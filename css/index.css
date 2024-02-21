@@ -34,8 +34,11 @@ a {
   background-position: center;
   background-attachment: fixed;
   background-size: cover;
-  background-image: url('../media/wallpaper.jpg');
+  /* background-image: url('../media/wallpaper.jpg'); */
   overflow: hidden;
+  background: #eaf0f1 url(https://www.kirby.jp/images/0427/bg-pattern.png);
+  background-position: center top;
+  background-size: 150px 150px;
 }
 .top {
   z-index: 1;
@@ -112,7 +115,7 @@ nav li.active a {
 }
 .banner {
   position: relative;
-  background-color: rgba(255, 255, 255, 0.7);
+  /* background-color: rgba(255, 255, 255, 0.7); */
 }
 .banner-box {
   display: flex;
@@ -154,6 +157,7 @@ nav li.active a {
   line-height: 40px;
   border-radius: 50px;
   background-color: #777;
+  background-color: #c3ddde;
   color: #fff;
   white-space: pre;
 }
@@ -194,10 +198,10 @@ nav li.active a {
 }
 .introduce {
   position: relative;
-  background-color: rgba(245, 245, 245, 0.7);
+  /* background-color: rgba(245, 245, 245, 0.7); */
 }
-.introduce.rev {
-  background-color: rgba(255, 255, 255, 0.7);
+.rev {
+  background-color: rgba(255, 255, 255, 0.6);
 }
 .introduce-box {
   display: block;
