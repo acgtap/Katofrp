@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>KatoFrp客户端 - 快速简单的Frp游戏联机客户端</title>
+    <meta
+      name="keywords"
+      content="我的世界联机,katofrp,katolan,我的世界局域网联机,frp,内网穿透,端口映射,反向代理应用,frp游戏联机"
+    />
+    <meta
+      name="description"
+      content="KatoFrp是一个快速简单的Frp游戏联机客户端，提供图形化操作界面的Frp连接客户端。"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <link rel="shortcut icon" type="image/x-icon" href="media/lo.png" />
+    <link rel="apple-touch-icon" type="image/x-icon" href="media/lo.png" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/index.css" />
+    <style>
+      .screen img {
+        height: 400px;
+        border-radius: 11px;
+        box-shadow: burlywood;
+      }
+      /* .top{
+          background: rgba(255, 202, 210,0.7);
+      }
+      .banner{
+          background: rgba(247, 231, 214,0.7);
+      }
+      .bg{
+          background: rgba(247, 231, 214,0.7)!important;
+      } */
+    </style>
+  </head>
+  <body>
+    <div id="wallpaper"></div>
+    <div class="top">
+      <div class="top">
+        <div class="container">
+          <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="/"><div class="logo">Katofrp</div></a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarNavDropdown"
+              aria-controls="navbarNavDropdown"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav ml-auto">
+                <li class="navber-item active" data-path="/frp/">
+                  <a href="/">首页</a>
+                </li>
+                <li class="navber-item" data-path="/frp/manual/">
+                  <a href="https://docs.qq.com/doc/DQU9vckdUZ21oeFpU"
+                    >常见问题解答</a
+                  >
+                </li>
+                <li class="navber-item" data-path="/frp/manual/">
+                  <a href="/cloud.html">MC面板云服</a>
+                </li>
+                <li class="navber-item" data-path="/frp/manual/">
+                  <a href="/payed.html">感谢</a>
+                </li>
+                
+                <li class="navber-item" data-path="/frp/history/">
+                  <a href="https://qm.qq.com/q/jhzFDyBPz4">官群</a>
+                </li>
+                <li class="navber-item">
+                  <a href="https://lan.katomegumi.net" target="_blank"
+                    >Katolan</a
+                  >
+                </li>
+                <li class="navber-item">
+                  <a href="https://afdian.net/a/seeyouagain" target="_blank"
+                    >爱发电</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+        <script>
+          $(function () {
+            $('nav\x20li')['each'](function (_0x3f46fc, _0x4bd663) {
+              if (
+                $(_0x4bd663)['data']('path') === window['location']['pathname']
+              ) {
+                $(_0x4bd663)['addClass']('active')
+              } else {
+                $(_0x4bd663)['removeClass']('active')
+              }
+            })
+          })
+        </script>
+      </div>
+    </div>
+    <div class="middle">
+      <div class="banner">
+        <div class="banner-box" style="padding-top: 20px;font-size: 25px;">
+          <p>
+            收入微薄，但我们始终坚守初心，为您提供高品质的云服务体验。现在，我们推出全新策略，通过您的每一次购买，共同助力我们的运营之路，让云服务更加贴近每一位用户。
+          </p>
+
+          <br />
+          <p>
+            想象一下，您的云服务器24小时不间断运行，无论何时何地，都能轻松畅享云端世界的精彩。无论是数据存储、网站搭建还是应用开发，我们的云服务都能满足您的需求，让您的创意与激情得以尽情释放。
+          </p>
+          <br />
+          <p>
+            现在，就在淘宝下单吧！选择我们的云服务器，让您的梦想在云端翱翔。每一次支持，都是对我们莫大的鼓励。让我们携手共进，共创美好未来！
+          </p>
+          
+        </div>
+        <div style="font-size: 25px;text-align: center;margin-bottom: 30px;">淘宝链接：<a href="https://item.taobao.com/item.htm?ft=t&id=779179955236">https://item.taobao.com/item.htm?ft=t&id=779179955236</a>
+        </div>
+        <img style="display: block; width: 100%;height: 600px;" src="https://img.katomegumi.net/file/1e7b88349b1318d752cb7.png" />
+      </div>
+    </div>
+    <footer>
+      <div class="copyright" style="text-align: center">
+        <img
+          src="https://counter.katomegumi.net/get/@katofrp"
+          style="text-align: center; margin-top: 15px"
+          alt="katolan"
+          id="footer-logo"
+        />
+        <p>
+          任何使用问题可以加入<a
+            href="https://qm.qq.com/q/jhzFDyBPz4"
+            target="_blank"
+            >官方QQ群</a
+          >：599075373 <br />
+          Copyright&nbsp;©&nbsp;2024&nbsp;<a
+            href="https://www.katomegumi.net/"
+            target="_blank"
+            >Katomegumi</a
+          >,&nbsp;All&nbsp;rights&nbsp;reserved.<br />
+          <a href="https://afdian.net/a/seeyouagain" target="_blank">赞助我们</a
+          >|
+          <a href="https://lan.katomegumi.net" target="_blank"
+            >Katolan虚拟局域网联机工具</a
+          >|
+          <a href="https://www.katomegumi.net" target="_blank"
+            >Katomegumi惠惠的实验室</a
+          >|
+          <a href="https://aicl.katomegumi.net/about" target="_blank"
+            >AI生成春联</a
+          >|
+          <a href="https://me.katomegumi.net/about" target="_blank"
+            >惠惠の博客</a
+          >
+        </p>
+      </div>
+    </footer>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+  </body>
+</html>
