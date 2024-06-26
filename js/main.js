@@ -13,3 +13,11 @@ this['addEventListener']('load', function () {
     }
   }
 })
+
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?08499fdfd6f7fe11dc581c402ba6e2dd";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
