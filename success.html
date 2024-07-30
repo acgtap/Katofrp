@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>成功</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: #f1f1f1;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div style="width: 70%; margin: 0 auto; text-align: center">
+        <div
+          style="
+            height: 500px;
+            border-radius: 16px;
+            background-color: #fff;
+            margin-top: 70px;
+          "
+        >
+          <img
+            src="https://pay.payma.cn/Submit/Template/default/assets/img/wxpay-logo.png"
+            style="width: 180px; margin-top: 100px"
+          />
+          <h1 style="margin-top: 20px">
+            支付成功 <span style="color: green">{{money}}</span> 元
+          </h1>
+          <p style="color: #bbb; width: 60%; margin: 30px auto">
+            感谢您的支持，你已成功赞助会员，请检查主界面到账通知。
+          </p>
+          <p style="color: #bbb; width: 60%; margin:-20px auto">
+            如果没有到账或未开通，请加入QQ群599075373寻求管理员帮助！
+          </p>
+          <span style="color: red;margin-top: 45px;display: block;">页面将在 {{left}} 秒后自动关闭</span>
+        </div>
+      </div>
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+      const { createApp, ref } = Vue
+
+      createApp({
+        setup() {
+          function getQueryParams() {
+            const params = {}
+            window.location.search
+              .substr(1)
+              .split('&')
+              .reduce((acc, val) => {
+                const [key, value] = val.split('=')
+                acc[key] = decodeURIComponent(value)
+                return acc
+              }, params)
+            return params
+          }
+
+          const queryParams = getQueryParams()
+          const money = ref(queryParams.money ? queryParams.money : 0)
+          let left = ref(15)
+          setInterval(() => {
+            left.value--
+            if (left.value <= 0) {
+              window.close()
+            }
+          }, 1000)
+          return {
+            money,
+            left
+          }
+        }
+      }).mount('#app')
+    </script>
+    <!-- Your content goes here -->
+  </body>
+</html>
