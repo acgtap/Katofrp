@@ -1,7 +1,4 @@
-$(function () {
-  $('.top')['load']('/frp/header.html')
-  $('footer')['load']('/frp/footer.html')
-})
+
 this['addEventListener']('load', function () {
   if (
     !('backdrop-filter' in this['document']['body']['style']) &&
