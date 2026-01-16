@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>视频列表 - KatoFrp客户端</title>
+    <meta name="keywords" content="我的世界联机,katofrp,katolan,我的世界局域网联机,frp,内网穿透,端口映射,反向代理应用,frp游戏联机" />
+    <meta name="description" content="KatoFrp是一个快速简单的Frp游戏联机客户端，提供图形化操作界面的Frp连接客户端。" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="shortcut icon" type="image/x-icon" href="media/lo.png" />
+    <link rel="apple-touch-icon" type="image/x-icon" href="media/lo.png" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/index.css" />
+    <style>
+      .video-list {
+        padding: 50px 0;
+      }
+      
+      .video-container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      
+      .video-title {
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 40px;
+      }
+      
+      .video-card {
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+      }
+      
+      .video-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+      }
+      
+      .video-header h3 {
+        font-weight: 600;
+        margin-bottom: 15px;
+        font-size: 18px;
+      }
+      
+      .bilibili-link {
+        display: inline-block;
+        margin-bottom: 10px;
+        padding: 6px 12px;
+        background-color: #fb7299;
+        color: #fff;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 14px;
+        transition: all 0.2s;
+      }
+      
+      .bilibili-link:hover {
+        background-color: #e85a82;
+        color: #fff;
+        text-decoration: none;
+      }
+      
+      .incentive-section {
+        background-color: rgba(255, 255, 255, 0.9);
+        border-radius: 10px;
+        padding: 30px;
+        margin-top: 20px;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      
+      .incentive-section h3 {
+        font-weight: 700;
+        margin-bottom: 15px;
+        color: #333;
+      }
+      
+      .incentive-section p {
+        font-size: 16px;
+        color: #555;
+      }
+      
+      .incentive-section .qq-number {
+        color: #fb7299;
+        font-weight: 600;
+      }
+
+      .video-wrapper {
+        position: relative;
+        width: 100%;
+        padding-bottom: 56.25%;
+        height: 0;
+        overflow: hidden;
+        border-radius: 8px;
+      }
+      
+      .video-wrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wallpaper"></div>
+    <div class="top">
+      <div class="top">
+        <div class="container">
+          <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="/"
+              ><div class="logo">Katofrp</div></a
+            >
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarNavDropdown"
+              aria-controls="navbarNavDropdown"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav ml-auto">
+                <li class="navber-item" data-path="/frp/">
+                  <a href="/">首页</a>
+                </li>
+                <li class="navber-item" data-path="/frp/articles/">
+                  <a  target="_blank" href="articles.html">文章教程</a>
+                </li>
+                <li class="navber-item active" data-path="/frp/video/">
+                  <a target="_blank" href="video.html">视频教程</a>
+                </li>
+                <li class="navber-item" data-path="/frp/manual/">
+                  <a target="_blank" href="https://flowus.cn/kato/share/4c103005-111b-4e5c-ad90-2ac254eb50d0">常见问题解答</a>
+                </li>
+                <li class="navber-item" data-path="/frp/manual/">
+                  <a target="_blank" href="https://cloud.tanggaoyun.cn/aff/YNYAOMNZ">MC面板云服</a>
+                </li>
+                <li class="navber-item" data-path="/frp/history/">
+                  <a target="_blank" href="https://qm.qq.com/q/AGIm3K3ziK">官群</a>
+                </li>
+                <li class="navber-item">
+                  <a target="_blank" href="https://afdian.com/a/seeyouagain" target="_blank">爱发电</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+        <script>
+          $(function () {
+            $('nav\x20li')['each'](function (_0x3f46fc, _0x4bd663) {
+              if (
+                $(_0x4bd663)['data']('path') === window['location']['pathname']
+              ) {
+                $(_0x4bd663)['addClass']('active')
+              } else {
+                $(_0x4bd663)['removeClass']('active')
+              }
+            })
+          })
+        </script>
+      </div>
+    </div>
+
+    <div class="video-list" style="margin-top: 50px;">
+      <div class="video-container">
+        <h2 class="video-title">视频教程</h2>
+        
+        <!-- 视频1 -->
+        <div class="video-card">
+          <a class="bilibili-link" href="https://www.bilibili.com/video/BV1Bv421y7MU" target="_blank">🔗 访问B站高清视频</a>
+          <div class="video-header">
+            <h3>[MC联机详细教程]这可能是全网最简单快速的远程联机方式！这个寒假不无聊！</h3>
+          </div>
+          <div class="video-wrapper">
+            <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=1450670960&bvid=BV1Bv421y7MU&cid=1439413542&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+          </div>
+        </div>
+
+        <!-- 视频2 -->
+        <div class="video-card">
+          <a class="bilibili-link" href="https://www.bilibili.com/video/BV1zWxieWEWS" target="_blank">🔗 访问B站高清视频</a>
+          <div class="video-header">
+            <h3>我的世界保姆级联机教程 简单 稳定 易上手 低延迟！！ 告别卡顿！！与好友一起Minecraft！</h3>
+          </div>
+          <div class="video-wrapper">
+            <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=113216193630397&bvid=BV1zWxieWEWS&cid=26051022824&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+          </div>
+        </div>
+        
+        <!-- 视频3 -->
+        <div class="video-card">
+          <a class="bilibili-link" href="https://www.bilibili.com/video/BV1eq8azGEZH" target="_blank">🔗 访问B站高清视频</a>
+          <div class="video-header">
+            <h3>[mcje]内网穿透联机工具-katofrp</h3>
+          </div>
+          <div class="video-wrapper">
+            <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=114922050555890&bvid=BV1eq8azGEZH&cid=31304845086&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+          </div>
+        </div>
+        
+        <!-- 视频4 -->
+        <div class="video-card">
+          <a class="bilibili-link" href="https://www.bilibili.com/video/BV1Fy421i7ss" target="_blank">🔗 访问B站高清视频</a>
+          <div class="video-header">
+            <h3>(っ◔◡◔)っ ♥ 【联机教程】超简单的免费联机教程 无需正版即可联机 ♥</h3>
+          </div>
+          <div class="video-wrapper">
+            <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=1551881611&bvid=BV1Fy421i7ss&cid=1471461463&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+          </div>
+        </div>
+        
+        <!-- 视频激励计划 -->
+        <div class="incentive-section">
+          <h3>🎬 视频激励计划</h3>
+          <p>制作KatoFrp相关视频可获得激励奖励！</p>
+          <p>详情请添加QQ：<span class="qq-number">2968608803</span> 了解</p>
+        </div>
+         
+      </div>
+    </div>
+
+    <footer>
+      <div class="copyright" style="text-align: center;">
+        <p>
+          记住我们的官方网站：<a href="https://www.frp.moe" target="_blank">frp.moe</a> <br/>
+            任何使用问题可以加入<a href="https://qm.qq.com/q/jhzFDyBPz4" target="_blank">官方QQ群</a>：599075373 <br />
+          Copyright&nbsp;©&nbsp;2024&nbsp;<a
+            href="https://www.katomegumi.net/"
+            target="_blank"
+            >Katomegumi</a
+          >,&nbsp;All&nbsp;rights&nbsp;reserved.<br />
+            <a href="https://afdian.com/a/seeyouagain" target="_blank">赞助我们</a>|
+            <a href="https://www.katomegumi.net" target="_blank">惠惠的实验室</a>|
+          <a href="https://s.threatbook.com/report/file/07afe4373e3fda3ee1dd103e693a9e48eb18f257d96c738b3371d3a39ebb2d2f" target="_blank">微步软件安全报告</a>
+        </p>
+      </div>
+    </footer>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  </body>
+</html>

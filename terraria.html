@@ -2,22 +2,20 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>饥荒联机 使用KatoFrp客户端 - 快速简单的饥荒游戏联机客户端</title>
+    <title>泰拉瑞亚联机 使用KatoFrp客户端 - 快速简单的泰拉瑞亚游戏联机工具</title>
     <meta
       name="keywords"
-      content="饥荒联机,Don't Starve,饥荒联机版,饥荒内网映射,我的世界联机,katofrp,katofrp饥荒联机,frp,内网穿透,端口映射,frp游戏联机"
+      content="泰拉瑞亚联机,Terraria,泰拉瑞亚多人游戏,泰拉瑞亚内网映射,泰拉瑞亚服务器,katofrp,katofrp泰拉瑞亚联机,frp,内网穿透,端口映射,frp游戏联机,泰拉瑞亚好友联机"
     />
     <meta
       name="description"
-      content="KatoFrp是一个快速简单的Frp游戏联机客户端，提供图形化操作界面的Frp连接客户端。"
+      content="KatoFrp是一个快速简单的泰拉瑞亚游戏联机工具，提供图形化操作界面，让你和好友轻松开始泰拉瑞亚联机冒险。"
     />
     <meta
       name="viewport"
       content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
     />
-<!-- 主题颜色 -->
-    <meta name="theme-color" content="#fffdec" />
-    <meta name=""
+    <meta name="theme-color" content="#4a90d9" />
     <link rel="shortcut icon" type="image/x-icon" href="media/lo.png" />
     <link rel="apple-touch-icon" type="image/x-icon" href="media/lo.png" />
 
@@ -32,20 +30,53 @@
         border-radius: 11px;
         box-shadow: burlywood;
       }
-      /* .top{
-          background: rgba(255, 202, 210,0.7);
+      #wallpaper {
+        background: url('https://uapis.cn/static/uploads/9bc629d0c4_4Ds50j6Bapeb.webp') center/cover no-repeat fixed !important;
       }
-      .banner{
-          background: rgba(247, 231, 214,0.7);
+      #wallpaper::after {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: -1;
       }
-      .bg{
-          background: rgba(247, 231, 214,0.7)!important;
-      } */
+      .top, .banner, .banner-slogan h1, .banner-slogan h2, .banner-edit p, .banner-feature span {
+        color: #fff !important;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+      }
+      .navbar-light .navbar-nav .nav-link, .navber-item a {
+        color: #fff !important;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+      }
+      .logo {
+        color: #fff !important;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+      }
+      /* 内容区域文字样式 */
+      .introduce .info h2, .introduce .info p, .introduce .info strong {
+        color: #fff !important;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+      }
+      .centerline h2 {
+        color: #fff !important;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+      }
+      /* 底部footer样式 */
+      footer, footer p, footer a {
+        color: #fff !important;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+      }
+      footer a:hover {
+        color: #7dd3fc !important;
+      }
     </style>
   </head>
   <body>
-    <div id="wallpaper" style="background: #fffdec"></div>
-    <div class="top">
+    <div id="wallpaper"></div>
+    <div class="top"></div>
       <div class="top">
         <div class="container">
           <nav class="navbar navbar-expand-lg navbar-light">
@@ -63,32 +94,25 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
               <ul class="navbar-nav ml-auto">
-                <li class="navber-item active" data-path="/frp/manual/">
-                  <a href="/starve.html">Katofrp饥荒联机版</a>
+                <li class="navber-item active" data-path="/terraria.html">
+                  <a href="/terraria.html">Katofrp泰拉瑞亚联机</a>
                 </li>
-
                 <li class="navber-item" data-path="/frp/manual/">
                   <a
-                    href="https://flowus.cn/kato/share/4c103005-111b-4e5c-ad90-2ac254eb50d0
-Katofrp使用帮助"
+                    href="https://flowus.cn/kato/share/4c103005-111b-4e5c-ad90-2ac254eb50d0"
                     >联机常见问题解答</a
                   >
                 </li>
                 <li class="navber-item" data-path="/frp/manual/">
                   <a href="https://cloud.tanggaoyun.cn/aff/YNYAOMNZ"
-                    >饥荒面板云服</a
+                    >游戏面板云服</a
                   >
                 </li>
                 <li class="navber-item" data-path="/frp/">
                   <a href="/">Katofrp首页</a>
                 </li>
                 <li class="navber-item" data-path="/frp/history/">
-                  <a href="http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=95kmq-EhHeypyMe5jonNcjXV7xoYt_8v&authKey=%2Fn5RAnUC40f2iJ622rfC8l3Q7ZTCcfQr9m2OXnpVBOijri8FzIOIdymSy0y%2F9EtH&noverify=0&group_code=277583386">饥荒联机问题官群</a>
-                </li>
-                <li class="navber-item">
-                  <a href="https://afdian.com/a/seeyouagain" target="_blank"
-                    >爱发电</a
-                  >
+                  <a href="https://qm.qq.com/q/2oqKFNmTI8">联机问题官群</a>
                 </li>
               </ul>
             </div>
@@ -115,59 +139,50 @@ Katofrp使用帮助"
           <div class="left">
             <div class="banner-slogan">
               <h1>Katofrp</h1>
-              <h2>饥荒（Don't Starve）轻松游戏联机工具</h2>
-              <!-- <img src="./media/11.png" style=""/> -->
+              <h2>泰拉瑞亚（Terraria）轻松游戏联机工具</h2>
             </div>
             <div class="banner-feature">
               <span><img src="media/yes.svg" />轻巧免费无广告</span>
               <span><img src="media/yes.svg" />图形化操作界面</span>
               <span><img src="media/yes.svg" />最快最低延迟</span>
             </div>
-            <!-- <a
+            <a
               class="btn"
               href="https://wwfj.lanzoul.com/b0sx3i3gh"
               target="_blank"
               >立即下载</a
-            > -->
+            >
             <div class="banner-edit">
               <p>
-                <strong style="user-select: text"
-                  ><h6>由于该联机方式已不再可用，故已关闭下载。</h6></strong
-                ><br />
-                <!-- <strong style="user-select: text;"><h6><a href="https://wwk.lanzoul.com/b023tt2de">备用蓝奏下载（密码：etq9）</a></h6></strong><br/> -->
-                版本：1.2.0<span>|</span>日期：2024年9月19日<span>|</span>大小：6.41MB<br />支持平台：Win10/11
-                x64
+                <strong style="user-select: text;"><h6>下载链接密码：etq9</h6></strong><br/>
+                版本：1.3.6<span>|</span>日期：2025年9月16日<span>|</span>大小：5.41MB<br />支持平台：Win10/11 x64
               </p>
             </div>
           </div>
           <div class="right" style="">
             <img
               class="banner-thumbnail"
-              src="https://tc.vlogidc.cn/img/2024/09/22/66f035b849875.png"
+              src="https://tse1-mm.cn.bing.net/th/id/OIP-C.wg5GdaWvute38psDdeRjHwHaEJ?w=261&h=180&c=7&r=0&o=7&dpr=2&pid=1.7&rm=3"
+              alt="泰拉瑞亚联机"
             />
           </div>
         </div>
       </div>
-      <div class="introduce rev">
-        <div class="introduce-box screen">
-          <div class="preview"><img src="media/1.png" /></div>
-          <div class="preview"><img src="media/2.png" /></div>
-          <div class="preview"><img src="media/3.png" /></div>
-        </div>
-      </div>
+
       <div class="introduce bg">
         <div class="introduce-box">
           <div class="preview">
             <img
-              src="https://tc.vlogidc.cn/img/2024/09/22/66f039bc3833f.png"
+              src="https://tse4-mm.cn.bing.net/th/id/OIP-C.oyN8-Hpae83wQKnbgO0jZQHaEK?w=318&h=180&c=7&r=0&o=7&dpr=2&pid=1.7&rm=3"
+              alt="泰拉瑞亚联机功能"
             />
           </div>
           <div class="info">
             <h2>通过 Katofrp 服务可以做什么？</h2>
             <p>
-              🤩 与你的好友简单快速开始饥荒联机！！ <br /><br />
+              ⚔️ 与你的好友简单快速开始泰拉瑞亚联机！！ <br /><br />
               🤩 Katofrp
-              还可以帮助您轻松地实现内网穿透，从而<strong>远距离其他游戏联机</strong>。
+              可以帮助您轻松地实现内网穿透，从而<strong>远距离与好友一起探索冒险</strong>。
               <br /><br />
               🚀 只需房主点击 <strong>一键联机</strong><br /><br />
               😍
@@ -179,27 +194,28 @@ Katofrp使用帮助"
 
       <div class="introduce bg">
         <div class="introduce-box">
-          
-
           <div class="info">
             <h2>我如何创建联机房间？</h2>
-           
             <p>
-              1.打开饥荒（Don't Starve）游戏，进入要联机的地图。
-            </p>
-             <p>
-              2.查看要地图的服务器端口号，例如饥荒的地图端口号一般为10889。
+              1.打开泰拉瑞亚（Terraria）游戏，在主菜单选择"多人游戏"。
             </p>
             <p>
-              3.打开KatoFrp客户端，输入端口号，点击“连接服务器”按钮。
+              2.选择"主机并游玩"，然后选择一个角色和世界。
             </p>
             <p>
-              4.将生成的直连代码分享给好友。
+              3.泰拉瑞亚默认端口为 <strong>7777</strong>。
+            </p>
+            <p>
+              4.打开KatoFrp客户端，输入端口号 7777，点击"连接服务器"按钮。
+            </p>
+            <p>
+              5.将生成的连接地址分享给好友即可。
             </p>
           </div>
           <div class="preview">
             <img
-              src="https://tc.vlogidc.cn/img/2024/09/22/66f0397181191.png"
+              src="https://tse2-mm.cn.bing.net/th/id/OIP-C._DVTMFURvFKSrQ0c_8KDLwHaEs?w=265&h=180&c=7&r=0&o=7&dpr=2&pid=1.7&rm=3
+              alt="创建泰拉瑞亚联机房间"
             />
           </div>
         </div>
@@ -208,21 +224,19 @@ Katofrp使用帮助"
         <div class="introduce-box">
           <div class="preview">
             <img
-              src="https://tc.vlogidc.cn/img/2024/09/22/66f03995e8a0b.png"
+              src="https://tse2-mm.cn.bing.net/th/id/OIP-C._DVTMFURvFKSrQ0c_8KDLwHaEs?w=265&h=180&c=7&r=0&o=7&dpr=2&pid=1.7&rm=3"
+              alt="加入泰拉瑞亚联机"
             />
           </div>
           <div class="info">
             <h2>我的朋友如何加入？</h2>
             <div style="font-weight: 400;font-size: medium;">
-              <p>
-                1.点击复制饥荒游戏的直连代码 </p>
-                <p>2.打开游戏主菜单 摁下键盘左上角的<span style="color:red;font-weight: bold;">~</span>键，打不开可以切换成英文输入法 </p>
-                <p>3.摁下ctrl+v粘贴代码 </p>
-                <p>4.回车即可加入服务器.
-                </p>
+              <p>1.获取房主分享的连接地址（IP:端口）</p>
+              <p>2.打开泰拉瑞亚游戏，在主菜单选择"多人游戏"</p>
+              <p>3.选择"通过IP加入"</p>
+              <p>4.输入房主分享的IP地址和端口号即可加入世界</p>
             </div>
           </div>
-
         </div>
       </div>
 
@@ -290,14 +304,11 @@ Katofrp使用帮助"
               <div class="gameitem">
                 <div class="gamecard">
                   <img
-                    src="https://img2.baidu.com/it/u=3354113838,4048600400&fm=253&fmt=auto&app=138&f=JPEG?w=713&h=401"
+                    src="https://img1.baidu.com/it/u=1407750889,3441968730&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500"
+                    alt="泰拉瑞亚"
                   />
-                  <span>星露谷物语</span>
-                  <a
-                    href="https://blog.csdn.net/2301_77977115/article/details/136234132"
-                    target="_blank"
-                    >查看教程</a
-                  >
+                  <span>泰拉瑞亚</span>
+                  <a href="/terraria.html">查看教程</a>
                 </div>
               </div>
             </div>
@@ -306,6 +317,7 @@ Katofrp使用帮助"
                 <div class="gamecard">
                   <img
                     src="https://p1.itc.cn/images03/20200515/a92c63802e8947c395da956a8b052984.jpeg"
+                    alt="Minecraft"
                   />
                   <span>Minecraft</span>
                   <a
@@ -321,11 +333,10 @@ Katofrp使用帮助"
                 <div class="gamecard">
                   <img
                     src="https://img2.baidu.com/it/u=3934443108,1859250567&fm=253&fmt=auto&app=120&f=JPEG?w=800&h=500"
+                    alt="饥荒联机版"
                   />
-                  <span>戴森球计划</span>
-                  <a href="https://wwk.lanzoul.com/b023tt2de" target="_blank"
-                    >查看教程</a
-                  >
+                  <span>饥荒联机版</span>
+                  <a href="/starve.html">查看教程</a>
                 </div>
               </div>
             </div>
@@ -338,19 +349,13 @@ Katofrp使用帮助"
     </div>
     <footer>
       <div class="copyright" style="text-align: center">
-        <img
-          src="https://counter.katomegumi.net/get/@katofrpdst"
-          style="text-align: center; margin-top: 15px"
-          alt="katolan"
-          id="footer-logo"
-        />
         <p>
           记住我们的官方网站：<a href="https://www.frp.moe" target="_blank"
             >frp.moe</a
           >
           <br />
           任何使用问题可以加入<a
-            href="https://qm.qq.com/q/jhzFDyBPz4"
+            href="https://qm.qq.com/q/2oqKFNmTI8"
             target="_blank"
             >官方QQ群</a
           >：277583386 <br />
@@ -359,11 +364,8 @@ Katofrp使用帮助"
             target="_blank"
             >Katomegumi</a
           >,&nbsp;All&nbsp;rights&nbsp;reserved.<br />
-          饥荒 ©Klei Entertainment<br/>
-          <a href="https://afdian.com/a/seeyouagain" target="_blank">赞助我们</a
-          >|
+          泰拉瑞亚 ©Re-Logic<br/>
           <a href="https://www.katomegumi.net" target="_blank">惠惠的实验室</a>|
-          <!-- <a href="https://aicl.katomegumi.net/" target="_blank">AI生成春联</a>| -->
         </p>
       </div>
     </footer>
