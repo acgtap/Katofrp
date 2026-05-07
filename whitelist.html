@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Katofrp 国外访问白名单管理</title>
+    <style>
+        :root {
+            --semi-color-primary: #1664ff;
+            --semi-color-primary-hover: #4080ff;
+            --semi-color-bg-0: #ffffff;
+            --semi-color-bg-1: #f7f8fa;
+            --semi-color-fill-0: #f9f9f9;
+            --semi-color-fill-1: #f2f3f5;
+            --semi-color-border: #e5e6eb;
+            --semi-color-text-0: #1d2129;
+            --semi-color-text-1: #4e5969;
+            --semi-color-text-2: #86909c;
+            --semi-color-success: #00b42a;
+            --semi-color-danger: #f53f3f;
+            --semi-color-warning: #ff7d00;
+            --semi-radius-small: 6px;
+            --semi-radius-medium: 8px;
+            --semi-radius-large: 12px;
+            --semi-shadow-card: 0 4px 16px rgba(0, 0, 0, 0.04);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--semi-color-bg-1);
+            color: var(--semi-color-text-0);
+            min-height: 100vh;
+            padding: 32px 20px;
+        }
+
+        .container {
+            max-width: 920px;
+            margin: 0 auto;
+        }
+
+        .header {
+            margin-bottom: 24px;
+        }
+
+        .header h1 {
+            color: var(--semi-color-text-0);
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            color: var(--semi-color-text-1);
+            font-size: 15px;
+        }
+
+        .notice {
+            background: #fff7e8;
+            color: var(--semi-color-text-0);
+            padding: 18px 20px;
+            border: 1px solid #ffe4ba;
+            border-radius: var(--semi-radius-large);
+            margin-bottom: 16px;
+        }
+
+        .notice h3 {
+            color: var(--semi-color-warning);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 16px;
+        }
+
+        .notice ul {
+            margin-left: 20px;
+            color: var(--semi-color-text-1);
+            line-height: 1.8;
+            font-size: 14px;
+        }
+
+        .card {
+            background: var(--semi-color-bg-0);
+            border: 1px solid var(--semi-color-border);
+            border-radius: var(--semi-radius-large);
+            padding: 24px;
+            margin-bottom: 16px;
+            box-shadow: var(--semi-shadow-card);
+        }
+
+        .card h2 {
+            color: var(--semi-color-text-0);
+            margin-bottom: 20px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid var(--semi-color-border);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--semi-color-text-0);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            height: 40px;
+            padding: 8px 12px;
+            border: 1px solid var(--semi-color-border);
+            border-radius: var(--semi-radius-small);
+            font-size: 14px;
+            color: var(--semi-color-text-0);
+            background: var(--semi-color-bg-0);
+            outline: none;
+        }
+
+        .form-group input:hover {
+            border-color: #c9cdd4;
+        }
+
+        .form-group input:focus {
+            border-color: var(--semi-color-primary);
+            box-shadow: 0 0 0 2px rgba(22, 100, 255, 0.12);
+        }
+
+        .captcha-container {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .captcha-container input {
+            flex: 1;
+            min-width: 160px;
+        }
+
+        .captcha-image {
+            background: var(--semi-color-fill-0);
+            border: 1px solid var(--semi-color-border);
+            border-radius: var(--semi-radius-small);
+            padding: 8px 12px;
+            min-width: 150px;
+            min-height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .captcha-image:hover {
+            background: var(--semi-color-fill-1);
+        }
+
+        .captcha-image svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .btn {
+            min-height: 36px;
+            padding: 8px 16px;
+            border: 1px solid transparent;
+            border-radius: var(--semi-radius-small);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            line-height: 1.4;
+        }
+
+        .btn-primary {
+            background: var(--semi-color-primary);
+            color: #ffffff;
+        }
+
+        .btn-primary:hover {
+            background: var(--semi-color-primary-hover);
+        }
+
+        .btn-secondary {
+            background: var(--semi-color-fill-0);
+            color: var(--semi-color-text-0);
+            border-color: var(--semi-color-border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--semi-color-fill-1);
+        }
+
+        .btn:disabled {
+            opacity: 0.55;
+            cursor: not-allowed;
+        }
+
+        .result {
+            margin-top: 18px;
+            padding: 14px 16px;
+            border-radius: var(--semi-radius-medium);
+            display: none;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .result.success {
+            background: #f0fff4;
+            border: 1px solid #b7ebc2;
+            color: #176b2c;
+        }
+
+        .result.error {
+            background: #fff2f0;
+            border: 1px solid #ffccc7;
+            color: #a8071a;
+        }
+
+        .result.info {
+            background: #f0f7ff;
+            border: 1px solid #bedaff;
+            color: #0e42d2;
+        }
+
+        .result.warning {
+            background: #fff7e8;
+            border: 1px solid #ffe4ba;
+            color: #ad4e00;
+        }
+
+        .result-details {
+            margin-top: 10px;
+            padding: 10px 12px;
+            background: rgba(255, 255, 255, 0.65);
+            border-radius: var(--semi-radius-small);
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            font-size: 13px;
+            word-break: break-all;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+            padding: 4px;
+            background: var(--semi-color-fill-0);
+            border: 1px solid var(--semi-color-border);
+            border-radius: var(--semi-radius-medium);
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            padding: 8px 14px;
+            background: transparent;
+            color: var(--semi-color-text-1);
+            border: none;
+            border-radius: var(--semi-radius-small);
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .tab.active {
+            background: var(--semi-color-bg-0);
+            color: var(--semi-color-primary);
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .tab:hover:not(.active) {
+            background: var(--semi-color-fill-1);
+            color: var(--semi-color-text-0);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .refresh-btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: var(--semi-radius-small);
+        }
+
+        .refresh-btn:hover {
+            background: var(--semi-color-fill-1);
+        }
+
+        .my-ip-card {
+            border-left: 4px solid var(--semi-color-primary);
+        }
+
+        .my-ip-card.blacklisted {
+            border-left-color: var(--semi-color-danger);
+        }
+
+        .my-ip-card.whitelisted {
+            border-left-color: var(--semi-color-success);
+        }
+
+        .my-ip-card.loading {
+            border-left-color: var(--semi-color-primary);
+        }
+
+        .ip-display {
+            color: var(--semi-color-text-0);
+            font-size: 28px;
+            font-weight: 700;
+            text-align: center;
+            padding: 18px;
+            background: var(--semi-color-fill-0);
+            border: 1px solid var(--semi-color-border);
+            border-radius: var(--semi-radius-medium);
+            margin-bottom: 16px;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            word-break: break-all;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 13px;
+            border: 1px solid transparent;
+        }
+
+        .status-badge.safe {
+            background: #f0fff4;
+            color: #176b2c;
+            border-color: #b7ebc2;
+        }
+
+        .status-badge.danger {
+            background: #fff2f0;
+            color: #a8071a;
+            border-color: #ffccc7;
+        }
+
+        .status-badge.loading {
+            background: #f0f7ff;
+            color: #0e42d2;
+            border-color: #bedaff;
+        }
+
+        .status-info {
+            margin-top: 16px;
+            padding: 14px 16px;
+            background: var(--semi-color-fill-0);
+            border: 1px solid var(--semi-color-border);
+            border-radius: var(--semi-radius-medium);
+            color: var(--semi-color-text-1);
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .action-section {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--semi-color-border);
+        }
+
+        .action-section h3 {
+            color: var(--semi-color-text-0);
+            margin-bottom: 14px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .my-ip-captcha-container {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+        }
+
+        .my-ip-captcha-container input {
+            flex: 1;
+            min-width: 140px;
+            height: 40px;
+            padding: 8px 12px;
+            border: 1px solid var(--semi-color-border);
+            border-radius: var(--semi-radius-small);
+            font-size: 14px;
+            background: var(--semi-color-bg-0);
+            color: var(--semi-color-text-0);
+            outline: none;
+        }
+
+        .my-ip-captcha-container input:focus {
+            border-color: var(--semi-color-primary);
+            box-shadow: 0 0 0 2px rgba(22, 100, 255, 0.12);
+        }
+
+        .my-ip-captcha-image {
+            background: var(--semi-color-fill-0);
+            border: 1px solid var(--semi-color-border);
+            border-radius: var(--semi-radius-small);
+            padding: 8px 12px;
+            min-width: 130px;
+            min-height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .my-ip-captcha-image:hover {
+            background: var(--semi-color-fill-1);
+        }
+
+        .btn-white {
+            background: var(--semi-color-primary);
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .btn-white:hover {
+            background: var(--semi-color-primary-hover);
+        }
+
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .captcha-container {
+                flex-direction: column;
+            }
+
+            .captcha-container input {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Katofrp 白名单管理</h1>
+            <p>国外访问控制与白名单申请系统</p>
+        </div>
+
+        <div class="notice">
+            <h3>重要说明</h3>
+            <ul>
+                <li><strong>Katofrp 默认不支持国外访问</strong>，国外IP会被自动拦截</li>
+                <li>如需从国外访问，请先将您的IP添加到白名单</li>
+                <li>国内IP（中国大陆、香港、澳门、台湾）默认允许访问</li>
+                <li>白名单申请需要通过验证码验证</li>
+            </ul>
+        </div>
+
+        <!-- 我的IP状态卡片 -->
+        <div class="card my-ip-card loading" id="my-ip-card">
+            <h2>我的IP状态</h2>
+            <div class="ip-display" id="my-ip-display">检测中...</div>
+            <div style="text-align: center;">
+                <span class="status-badge loading" id="my-ip-status">正在检测...</span>
+            </div>
+            <div class="status-info" id="my-ip-info">
+                正在获取您的IP地址并查询状态...
+            </div>
+            
+            <!-- 添加白名单操作区域（仅黑名单时显示） -->
+            <div class="action-section" id="my-ip-action" style="display: none;">
+                <h3>快速添加到白名单</h3>
+                <div class="my-ip-captcha-container">
+                    <input type="text" id="my-ip-captcha-code" placeholder="输入验证码">
+                    <div class="my-ip-captcha-image" id="my-ip-captcha-image" onclick="refreshMyIpCaptcha()" title="点击刷新">
+                        <span style="color: #999; font-size: 12px;">点击获取</span>
+                    </div>
+                </div>
+                <div class="my-ip-captcha-container">
+                    <input type="text" id="my-ip-reason" placeholder="添加原因（可选）" style="width: 100%;">
+                </div>
+                <button class="btn btn-white" id="my-ip-add-btn" onclick="addMyIpToWhitelist()">
+                    添加我的IP到白名单
+                </button>
+                <div id="my-ip-add-result" style="margin-top: 15px; padding: 10px; border-radius: 8px; display: none;"></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="tabs">
+                <button class="tab active" data-tab="blacklist">黑名单查询</button>
+                <button class="tab" data-tab="whitelist">白名单查询</button>
+                <button class="tab" data-tab="add">添加白名单</button>
+            </div>
+
+            <!-- 黑名单查询 -->
+            <div id="blacklist" class="tab-content active">
+                <h2>查询IP是否在黑名单</h2>
+                <p style="color: #666; margin-bottom: 20px;">查询指定IP是否被拦截。国外IP若无白名单记录，默认视为黑名单。</p>
+                <div class="form-group">
+                    <label for="blacklist-ip">IP 地址</label>
+                    <input type="text" id="blacklist-ip" placeholder="请输入要查询的IP地址，如：1.2.3.4">
+                </div>
+                <button class="btn btn-primary" onclick="checkBlacklist()">
+                    <span>查询黑名单</span>
+                </button>
+                <div id="blacklist-result" class="result"></div>
+            </div>
+
+            <!-- 白名单查询 -->
+            <div id="whitelist" class="tab-content">
+                <h2>查询IP是否在白名单</h2>
+                <p style="color: #666; margin-bottom: 20px;">查询指定IP是否已被添加到白名单。</p>
+                <div class="form-group">
+                    <label for="whitelist-ip">IP 地址</label>
+                    <input type="text" id="whitelist-ip" placeholder="请输入要查询的IP地址，如：1.2.3.4">
+                </div>
+                <button class="btn btn-primary" onclick="checkWhitelist()">
+                    <span>查询白名单</span>
+                </button>
+                <div id="whitelist-result" class="result"></div>
+            </div>
+
+            <!-- 添加白名单 -->
+            <div id="add" class="tab-content">
+                <h2>添加IP到白名单</h2>
+                <p style="color: #666; margin-bottom: 20px;">将您的IP添加到白名单以允许国外访问。需要完成验证码验证。</p>
+                <div class="form-group">
+                    <label for="add-ip">IP 地址 *</label>
+                    <input type="text" id="add-ip" placeholder="请输入要添加的IP地址，如：1.2.3.4">
+                </div>
+                <div class="form-group">
+                    <label for="add-reason">添加原因（可选）</label>
+                    <input type="text" id="add-reason" placeholder="如：自助申请白名单">
+                </div>
+                <div class="form-group">
+                    <label>验证码 *</label>
+                    <div class="captcha-container">
+                        <input type="text" id="captcha-code" placeholder="请输入验证码">
+                        <div class="captcha-image" id="captcha-image" onclick="refreshCaptcha()" title="点击刷新验证码">
+                            <span style="color: #999;">点击获取验证码</span>
+                        </div>
+                        <button class="btn btn-secondary" onclick="refreshCaptcha()">刷新</button>
+                    </div>
+                </div>
+                <button class="btn btn-primary" id="add-btn" onclick="addToWhitelist()">
+                    <span>添加到白名单</span>
+                </button>
+                <div id="add-result" class="result"></div>
+            </div>
+        </div>
+
+        <div style="text-align: center; color: var(--semi-color-text-2); margin-top: 20px; font-size: 14px;">
+            <p>Katofrp 白名单管理系统 | API: https://sqs.yz18.cn</p>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'https://sqs.yz18.cn';
+        let currentCaptchaId = null;
+
+        // Tab 切换
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                tab.classList.add('active');
+                document.getElementById(tab.dataset.tab).classList.add('active');
+                
+                // 切换到添加白名单时自动获取验证码
+                if (tab.dataset.tab === 'add' && !currentCaptchaId) {
+                    refreshCaptcha();
+                }
+            });
+        });
+
+        // 显示结果
+        function showResult(elementId, type, message, details = null) {
+            const el = document.getElementById(elementId);
+            el.className = `result ${type}`;
+            el.style.display = 'block';
+            el.innerHTML = message;
+            if (details) {
+                el.innerHTML += `<div class="result-details">${details}</div>`;
+            }
+        }
+
+        // 隐藏结果
+        function hideResult(elementId) {
+            document.getElementById(elementId).style.display = 'none';
+        }
+
+        // 验证IP格式
+        function isValidIP(ip) {
+            // IPv4
+            const ipv4Regex = /^(\d{1,3}\.){3}\d{1,3}$/;
+            // IPv6 (简化验证)
+            const ipv6Regex = /^([0-9a-fA-F]{0,4}:){2,7}[0-9a-fA-F]{0,4}$/;
+            return ipv4Regex.test(ip) || ipv6Regex.test(ip);
+        }
+
+        // 查询黑名单
+        async function checkBlacklist() {
+            const ip = document.getElementById('blacklist-ip').value.trim();
+            
+            if (!ip) {
+                showResult('blacklist-result', 'error', '请输入IP地址');
+                return;
+            }
+
+            if (!isValidIP(ip)) {
+                showResult('blacklist-result', 'error', 'IP地址格式不正确');
+                return;
+            }
+
+            try {
+                showResult('blacklist-result', 'info', '查询中...');
+                
+                const res = await fetch(`${API_BASE}/api/public/ip/blacklist?ip=${encodeURIComponent(ip)}`);
+                const data = await res.json();
+
+                if (!res.ok) {
+                    throw new Error(data.statusMessage || '查询失败');
+                }
+
+                if (data.isBlacklisted) {
+                    showResult('blacklist-result', 'error', 
+                        `<strong>该IP在黑名单中</strong><br>原因: ${data.reason}`,
+                        `IP: ${data.ip}<br>来源: ${getSourceText(data.source)}`
+                    );
+                } else {
+                    showResult('blacklist-result', 'success', 
+                        `<strong>该IP不在黑名单中</strong><br>原因: ${data.reason}`,
+                        `IP: ${data.ip}<br>来源: ${getSourceText(data.source)}`
+                    );
+                }
+            } catch (err) {
+                showResult('blacklist-result', 'error', `查询失败: ${err.message}`);
+            }
+        }
+
+        // 查询白名单
+        async function checkWhitelist() {
+            const ip = document.getElementById('whitelist-ip').value.trim();
+            
+            if (!ip) {
+                showResult('whitelist-result', 'error', '请输入IP地址');
+                return;
+            }
+
+            if (!isValidIP(ip)) {
+                showResult('whitelist-result', 'error', 'IP地址格式不正确');
+                return;
+            }
+
+            try {
+                showResult('whitelist-result', 'info', '查询中...');
+                
+                const res = await fetch(`${API_BASE}/api/public/ip/whitelist?ip=${encodeURIComponent(ip)}`);
+                const data = await res.json();
+
+                if (!res.ok) {
+                    throw new Error(data.statusMessage || '查询失败');
+                }
+
+                if (data.isWhitelisted) {
+                    let details = `IP: ${data.ip}<br>原因: ${data.reason || '无'}`;
+                    if (data.createdAt) {
+                        details += `<br>添加时间: ${new Date(data.createdAt).toLocaleString('zh-CN')}`;
+                    }
+                    if (data.expiresAt) {
+                        details += `<br>过期时间: ${new Date(data.expiresAt).toLocaleString('zh-CN')}`;
+                    } else {
+                        details += `<br>过期时间: 永不过期`;
+                    }
+                    
+                    showResult('whitelist-result', 'success', 
+                        `<strong>该IP在白名单中</strong>`,
+                        details
+                    );
+                } else {
+                    showResult('whitelist-result', 'warning', 
+                        `<strong>该IP不在白名单中</strong>`,
+                        `IP: ${data.ip}`
+                    );
+                }
+            } catch (err) {
+                showResult('whitelist-result', 'error', `查询失败: ${err.message}`);
+            }
+        }
+
+        // 获取验证码
+        async function refreshCaptcha() {
+            const captchaImage = document.getElementById('captcha-image');
+            captchaImage.innerHTML = '<span style="color: #999;">加载中...</span>';
+            
+            try {
+                const res = await fetch(`${API_BASE}/api/public/captcha`);
+                const data = await res.json();
+
+                if (!res.ok) {
+                    throw new Error(data.statusMessage || '获取验证码失败');
+                }
+
+                currentCaptchaId = data.captchaId;
+                captchaImage.innerHTML = data.svgData;
+                document.getElementById('captcha-code').value = '';
+            } catch (err) {
+                captchaImage.innerHTML = `<span style="color: #e74c3c;">获取失败，点击重试</span>`;
+                currentCaptchaId = null;
+            }
+        }
+
+        // 添加到白名单
+        async function addToWhitelist() {
+            const ip = document.getElementById('add-ip').value.trim();
+            const reason = document.getElementById('add-reason').value.trim();
+            const captchaCode = document.getElementById('captcha-code').value.trim();
+            const btn = document.getElementById('add-btn');
+
+            if (!ip) {
+                showResult('add-result', 'error', '请输入IP地址');
+                return;
+            }
+
+            if (!isValidIP(ip)) {
+                showResult('add-result', 'error', 'IP地址格式不正确');
+                return;
+            }
+
+            if (!currentCaptchaId) {
+                showResult('add-result', 'error', '请先获取验证码');
+                refreshCaptcha();
+                return;
+            }
+
+            if (!captchaCode) {
+                showResult('add-result', 'error', '请输入验证码');
+                return;
+            }
+
+            try {
+                btn.disabled = true;
+                btn.innerHTML = '<span class="loading-spinner"></span> 提交中...';
+                showResult('add-result', 'info', '提交中...');
+
+                const body = {
+                    ip: ip,
+                    captchaId: currentCaptchaId,
+                    captchaCode: captchaCode
+                };
+
+                if (reason) {
+                    body.reason = reason;
+                }
+
+                const res = await fetch(`${API_BASE}/api/public/ip/whitelist`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(body)
+                });
+
+                const data = await res.json();
+
+                if (!res.ok) {
+                    throw new Error(data.statusMessage || '添加失败');
+                }
+
+                let actionText = '已添加';
+                if (data.action === 'updated') {
+                    actionText = '已更新';
+                } else if (data.action === 'moved_from_blacklist') {
+                    actionText = '已从黑名单移至白名单';
+                }
+
+                showResult('add-result', 'success', 
+                    `<strong>${data.message}</strong>`,
+                    `操作: ${actionText}`
+                );
+
+                // 清空表单并刷新验证码
+                document.getElementById('add-ip').value = '';
+                document.getElementById('add-reason').value = '';
+                document.getElementById('captcha-code').value = '';
+                currentCaptchaId = null;
+                refreshCaptcha();
+
+            } catch (err) {
+                showResult('add-result', 'error', `添加失败: ${err.message}`);
+                // 验证码失败后刷新
+                refreshCaptcha();
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<span>添加到白名单</span>';
+            }
+        }
+
+        // 获取来源文本
+        function getSourceText(source) {
+            const sourceMap = {
+                'blacklist': '数据库黑名单',
+                'whitelist': '白名单豁免',
+                'geo-default': '国外IP默认拦截',
+                'default': '默认允许'
+            };
+            return sourceMap[source] || source;
+        }
+
+        // 回车键提交
+        document.getElementById('blacklist-ip').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') checkBlacklist();
+        });
+
+        document.getElementById('whitelist-ip').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') checkWhitelist();
+        });
+
+        document.getElementById('captcha-code').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') addToWhitelist();
+        });
+
+        document.getElementById('my-ip-captcha-code').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') addMyIpToWhitelist();
+        });
+
+        // ========== 我的IP自动检测功能 ==========
+        let myIp = null;
+        let myIpCaptchaId = null;
+
+        // 获取当前IP
+        async function getMyIP() {
+            // 使用多个IP检测服务，确保可用性
+            const services = [
+                'https://api.ipify.org?format=json',
+                'https://api.ip.sb/ip',
+                'https://api64.ipify.org?format=json'
+            ];
+
+            for (const service of services) {
+                try {
+                    const res = await fetch(service);
+                    if (service.includes('ip.sb')) {
+                        const ip = await res.text();
+                        return ip.trim();
+                    } else {
+                        const data = await res.json();
+                        return data.ip;
+                    }
+                } catch (e) {
+                    continue;
+                }
+            }
+            throw new Error('无法获取IP地址');
+        }
+
+        // 检查我的IP状态
+        async function checkMyIPStatus() {
+            const card = document.getElementById('my-ip-card');
+            const ipDisplay = document.getElementById('my-ip-display');
+            const statusBadge = document.getElementById('my-ip-status');
+            const infoDiv = document.getElementById('my-ip-info');
+            const actionDiv = document.getElementById('my-ip-action');
+
+            try {
+                // 获取IP
+                myIp = await getMyIP();
+                ipDisplay.textContent = myIp;
+
+                // 查询黑名单状态
+                const blacklistRes = await fetch(`${API_BASE}/api/public/ip/blacklist?ip=${encodeURIComponent(myIp)}`);
+                const blacklistData = await blacklistRes.json();
+
+                // 查询白名单状态
+                const whitelistRes = await fetch(`${API_BASE}/api/public/ip/whitelist?ip=${encodeURIComponent(myIp)}`);
+                const whitelistData = await whitelistRes.json();
+
+                // 更新UI
+                card.classList.remove('loading');
+
+                if (whitelistData.isWhitelisted) {
+                    // 在白名单中
+                    card.classList.remove('blacklisted');
+                    card.classList.add('whitelisted');
+                    statusBadge.className = 'status-badge safe';
+                    statusBadge.textContent = '白名单';
+                    
+                    let info = `<strong>状态：</strong>您的IP已在白名单中，可以正常访问<br>`;
+                    info += `<strong>原因：</strong>${whitelistData.reason || '无'}<br>`;
+                    if (whitelistData.createdAt) {
+                        info += `<strong>添加时间：</strong>${new Date(whitelistData.createdAt).toLocaleString('zh-CN')}<br>`;
+                    }
+                    if (whitelistData.expiresAt) {
+                        info += `<strong>过期时间：</strong>${new Date(whitelistData.expiresAt).toLocaleString('zh-CN')}`;
+                    } else {
+                        info += `<strong>过期时间：</strong>永不过期`;
+                    }
+                    infoDiv.innerHTML = info;
+                    actionDiv.style.display = 'none';
+
+                } else if (blacklistData.isBlacklisted) {
+                    // 在黑名单中
+                    card.classList.remove('whitelisted');
+                    card.classList.add('blacklisted');
+                    statusBadge.className = 'status-badge danger';
+                    statusBadge.textContent = '被拦截';
+                    
+                    let info = `<strong>状态：</strong>您的IP被拦截，无法访问<br>`;
+                    info += `<strong>原因：</strong>${blacklistData.reason}<br>`;
+                    info += `<strong>来源：</strong>${getSourceText(blacklistData.source)}<br>`;
+                    info += `<strong>提示：</strong>您可以在下方申请添加到白名单`;
+                    infoDiv.innerHTML = info;
+                    
+                    // 显示添加白名单操作区域
+                    actionDiv.style.display = 'block';
+                    refreshMyIpCaptcha();
+
+                } else {
+                    // 正常状态
+                    card.classList.remove('blacklisted');
+                    card.classList.add('whitelisted');
+                    statusBadge.className = 'status-badge safe';
+                    statusBadge.textContent = '正常';
+                    
+                    let info = `<strong>状态：</strong>您的IP可以正常访问<br>`;
+                    info += `<strong>原因：</strong>${blacklistData.reason}<br>`;
+                    info += `<strong>来源：</strong>${getSourceText(blacklistData.source)}`;
+                    infoDiv.innerHTML = info;
+                    actionDiv.style.display = 'none';
+                }
+
+            } catch (err) {
+                card.classList.remove('loading');
+                card.classList.add('blacklisted');
+                ipDisplay.textContent = '获取失败';
+                statusBadge.className = 'status-badge danger';
+                statusBadge.textContent = '检测失败';
+                infoDiv.innerHTML = `<strong>错误：</strong>${err.message}<br><button class="btn btn-white" onclick="checkMyIPStatus()" style="margin-top: 10px;">重新检测</button>`;
+            }
+        }
+
+        // 获取我的IP验证码
+        async function refreshMyIpCaptcha() {
+            const captchaImage = document.getElementById('my-ip-captcha-image');
+            captchaImage.innerHTML = '<span style="color: #999; font-size: 12px;">加载中...</span>';
+            
+            try {
+                const res = await fetch(`${API_BASE}/api/public/captcha`);
+                const data = await res.json();
+
+                if (!res.ok) {
+                    throw new Error(data.statusMessage || '获取验证码失败');
+                }
+
+                myIpCaptchaId = data.captchaId;
+                captchaImage.innerHTML = data.svgData;
+                document.getElementById('my-ip-captcha-code').value = '';
+            } catch (err) {
+                captchaImage.innerHTML = '<span style="color: #e74c3c; font-size: 12px;">失败，点击重试</span>';
+                myIpCaptchaId = null;
+            }
+        }
+
+        // 添加我的IP到白名单
+        async function addMyIpToWhitelist() {
+            const captchaCode = document.getElementById('my-ip-captcha-code').value.trim();
+            const reason = document.getElementById('my-ip-reason').value.trim();
+            const btn = document.getElementById('my-ip-add-btn');
+            const resultDiv = document.getElementById('my-ip-add-result');
+
+            if (!myIp) {
+                showMyIpResult('error', 'IP地址未获取，请刷新页面');
+                return;
+            }
+
+            if (!myIpCaptchaId) {
+                showMyIpResult('error', '请先获取验证码');
+                refreshMyIpCaptcha();
+                return;
+            }
+
+            if (!captchaCode) {
+                showMyIpResult('error', '请输入验证码');
+                return;
+            }
+
+            try {
+                btn.disabled = true;
+                btn.textContent = '提交中...';
+                showMyIpResult('info', '提交中...');
+
+                const body = {
+                    ip: myIp,
+                    captchaId: myIpCaptchaId,
+                    captchaCode: captchaCode
+                };
+
+                if (reason) {
+                    body.reason = reason;
+                } else {
+                    body.reason = '自助申请白名单';
+                }
+
+                const res = await fetch(`${API_BASE}/api/public/ip/whitelist`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(body)
+                });
+
+                const data = await res.json();
+
+                if (!res.ok) {
+                    throw new Error(data.statusMessage || '添加失败');
+                }
+
+                showMyIpResult('success', data.message);
+                
+                // 重新检测状态
+                setTimeout(() => {
+                    checkMyIPStatus();
+                }, 1500);
+
+            } catch (err) {
+                showMyIpResult('error', err.message);
+                refreshMyIpCaptcha();
+            } finally {
+                btn.disabled = false;
+                btn.textContent = '添加我的IP到白名单';
+            }
+        }
+
+        // 显示我的IP操作结果
+        function showMyIpResult(type, message) {
+            const resultDiv = document.getElementById('my-ip-add-result');
+            resultDiv.style.display = 'block';
+            resultDiv.style.background = type === 'success' ? 'rgba(255,255,255,0.9)' : 
+                                          type === 'error' ? 'rgba(255,200,200,0.9)' : 'rgba(255,255,255,0.7)';
+            resultDiv.style.color = type === 'success' ? '#155724' : 
+                                    type === 'error' ? '#721c24' : '#004085';
+            resultDiv.innerHTML = message;
+        }
+
+        // 页面加载时自动检测
+        document.addEventListener('DOMContentLoaded', () => {
+            checkMyIPStatus();
+        });
+    </script>
+</body>
+</html>
