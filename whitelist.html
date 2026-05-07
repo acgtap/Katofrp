@@ -479,7 +479,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>Katofrp 白名单管理</h1>
+            <h1>Katofrp联机工具 白名单管理</h1>
             <p>国外访问控制与白名单申请系统</p>
         </div>
 
@@ -488,7 +488,7 @@
             <ul>
                 <li><strong>Katofrp 默认不支持国外访问</strong>，国外IP会被自动拦截</li>
                 <li>如需从国外访问，请先将您的IP添加到白名单</li>
-                <li>国内IP（中国大陆、香港、澳门、台湾）默认允许访问</li>
+                <li>国内IP（中国大陆）默认允许访问</li>
                 <li>白名单申请需要通过验证码验证</li>
             </ul>
         </div>
@@ -660,15 +660,18 @@
                     throw new Error(data.statusMessage || '查询失败');
                 }
 
-                if (data.isBlacklisted) {
+                const locationText = formatBlacklistLocation(data, ip);
+                const reasonText = getBlacklistReasonText(data.reason);
+
+                if (data.blacklisted) {
                     showResult('blacklist-result', 'error', 
-                        `<strong>该IP在黑名单中</strong><br>原因: ${data.reason}`,
-                        `IP: ${data.ip}<br>来源: ${getSourceText(data.source)}`
+                        `<strong>该IP在黑名单中</strong><br>原因: ${reasonText}`,
+                        locationText
                     );
                 } else {
                     showResult('blacklist-result', 'success', 
-                        `<strong>该IP不在黑名单中</strong><br>原因: ${data.reason}`,
-                        `IP: ${data.ip}<br>来源: ${getSourceText(data.source)}`
+                        `<strong>该IP不在黑名单中</strong><br>原因: ${reasonText}`,
+                        locationText
                     );
                 }
             } catch (err) {
@@ -834,15 +837,33 @@
             }
         }
 
-        // 获取来源文本
-        function getSourceText(source) {
-            const sourceMap = {
+        // 获取黑名单原因文本
+        function getBlacklistReasonText(reason) {
+            const reasonMap = {
+                'foreign_ip': '国外IP默认拦截',
                 'blacklist': '数据库黑名单',
                 'whitelist': '白名单豁免',
-                'geo-default': '国外IP默认拦截',
                 'default': '默认允许'
             };
-            return sourceMap[source] || source;
+            return reasonMap[reason] || reason || '无';
+        }
+
+        // 格式化黑名单地区信息
+        function formatBlacklistLocation(data, fallbackIp = null) {
+            const details = [];
+            if (data.ip || fallbackIp) {
+                details.push(`IP: ${data.ip || fallbackIp}`);
+            }
+            if (data.ip_country) {
+                details.push(`国家/地区: ${data.ip_country}`);
+            }
+            if (data.ip_region) {
+                details.push(`区域: ${data.ip_region}`);
+            }
+            if (data.ip_city) {
+                details.push(`城市: ${data.ip_city}`);
+            }
+            return details.length ? details.join('<br>') : null;
         }
 
         // 回车键提交
@@ -936,7 +957,7 @@
                     infoDiv.innerHTML = info;
                     actionDiv.style.display = 'none';
 
-                } else if (blacklistData.isBlacklisted) {
+                } else if (blacklistData.blacklisted) {
                     // 在黑名单中
                     card.classList.remove('whitelisted');
                     card.classList.add('blacklisted');
@@ -944,8 +965,16 @@
                     statusBadge.textContent = '被拦截';
                     
                     let info = `<strong>状态：</strong>您的IP被拦截，无法访问<br>`;
-                    info += `<strong>原因：</strong>${blacklistData.reason}<br>`;
-                    info += `<strong>来源：</strong>${getSourceText(blacklistData.source)}<br>`;
+                    info += `<strong>原因：</strong>${getBlacklistReasonText(blacklistData.reason)}<br>`;
+                    if (blacklistData.ip_country) {
+                        info += `<strong>国家/地区：</strong>${blacklistData.ip_country}<br>`;
+                    }
+                    if (blacklistData.ip_region) {
+                        info += `<strong>区域：</strong>${blacklistData.ip_region}<br>`;
+                    }
+                    if (blacklistData.ip_city) {
+                        info += `<strong>城市：</strong>${blacklistData.ip_city}<br>`;
+                    }
                     info += `<strong>提示：</strong>您可以在下方申请添加到白名单`;
                     infoDiv.innerHTML = info;
                     
@@ -961,8 +990,16 @@
                     statusBadge.textContent = '正常';
                     
                     let info = `<strong>状态：</strong>您的IP可以正常访问<br>`;
-                    info += `<strong>原因：</strong>${blacklistData.reason}<br>`;
-                    info += `<strong>来源：</strong>${getSourceText(blacklistData.source)}`;
+                    info += `<strong>原因：</strong>${getBlacklistReasonText(blacklistData.reason)}<br>`;
+                    if (blacklistData.ip_country) {
+                        info += `<strong>国家/地区：</strong>${blacklistData.ip_country}<br>`;
+                    }
+                    if (blacklistData.ip_region) {
+                        info += `<strong>区域：</strong>${blacklistData.ip_region}<br>`;
+                    }
+                    if (blacklistData.ip_city) {
+                        info += `<strong>城市：</strong>${blacklistData.ip_city}`;
+                    }
                     infoDiv.innerHTML = info;
                     actionDiv.style.display = 'none';
                 }
