@@ -60,7 +60,7 @@ a {
   padding-left: 45px;
   line-height: 40px;
   white-space: nowrap;
-  background-image: url('../media/lo.png');
+  background-image: url('https://uapis.cn/static/uploads/9c4813ff45_iL67mbulqXkn.webp');
   background-repeat: no-repeat;
   background-position: center left;
   background-size: 30px;
@@ -569,3 +569,58 @@ nav li.active a {
     color: rgba(255, 255, 255, 0.7);
   }
 }
+ .logo{
+                  font-weight: 700!important;
+                }
+                .navber-item{
+                  font-weight: 800!important;
+                }
+                .centerline{
+                  width: 100%;
+                  text-align: center;
+                  align-items: center;
+                  justify-content: center;
+                  padding-bottom: 40px;
+                  font-weight: 800!important;
+                }
+                .centerline h2{
+                  font-weight: 700!important;
+                }
+                .game{
+                  display: block!important;
+                }
+                .gameitem{
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  justify-content: center;
+                  margin: 10px;
+                }
+                .gameitem img{
+                  width: 100%;
+                  height: 200px;
+                  border-radius: 11px 11px 0 0;
+
+                }
+                .gameitem a{
+                  margin-left: 10px;
+                  padding-bottom: 10px;
+                  display: block;
+                }
+                .gameitem span{
+                  margin-top: 10px;
+                  font-size: 20px;
+                  line-height: 30px;
+                  display: block;
+                  margin-left: 10px;
+                  font-weight: 600;
+                }
+                .gamecard{
+                  background-color: #c3ddde;
+                  border-radius: 11px;
+                  transition: all 0.3s;
+                  width: 100%;
+                }
+                .gamecard:hover{
+                  transform: scale(1.1 );
+                }
