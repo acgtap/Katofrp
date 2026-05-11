@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <title>Katofrp使用帮助，最全Minecraft联机问题解答！ - KatoFrp客户端</title>
+    <meta name="keywords" content="katofrp常见问题解答,katofrp连不了,mc无效登录会话,我的世界联机,katofrp,katolan,我的世界局域网联机,frp,内网穿透,端口映射,反向代理应用,frp游戏联机" />
+    <meta name="description" content="Katofrp使用帮助，最全Minecraft联机问题解答，整理连接失败、Minecraft联机、Mod冲突、语音聊天等常见问题。" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="shortcut icon" type="image/x-icon" href="media/lo.png" />
+    <link rel="apple-touch-icon" type="image/x-icon" href="media/lo.png" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/index.css" />
+    <style>
+      body { user-select: text; }
+      .questions-page { max-width: 1240px; margin: 0 auto; padding: 42px 18px 72px; }
+      .questions-layout { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 24px; align-items: start; }
+      .questions-hero, .questions-card, .questions-toc { background-color: rgba(255, 255, 255, 0.86); border: 1px solid rgba(81, 173, 210, 0.18); border-radius: 16px; box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08); }
+      .questions-hero { margin-bottom: 22px; padding: 28px; }
+      .questions-hero h1 { margin: 0 0 12px; font-size: 34px; line-height: 1.35; font-weight: 700; color: #1e1e1e; }
+      .questions-hero p { margin: 0; line-height: 1.9; color: #555; }
+      .questions-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+      .questions-tags span { padding: 7px 12px; border-radius: 999px; background-color: #c3ddde; color: #333; font-weight: 600; }
+      .questions-card { padding: 30px; }
+      .questions-content h2 { margin: 42px 0 18px; padding-left: 12px; border-left: 5px solid #51add2; font-size: 26px; line-height: 1.45; font-weight: 700; }
+      .questions-content h2:first-child { margin-top: 0; }
+      .questions-content h3 { margin: 30px 0 14px; padding: 14px 16px; border-radius: 12px; background-color: rgba(195, 221, 222, 0.55); font-size: 20px; line-height: 1.5; font-weight: 700; }
+      .questions-content h4 { margin: 22px 0 10px; font-size: 17px; font-weight: 700; color: #333; }
+      .questions-content p { margin: 10px 0; line-height: 1.95; font-size: 15px; color: #333; word-break: break-word; }
+      .questions-content a { color: #51add2; font-weight: 600; }
+      .questions-content figure { margin: 18px 0 28px; padding: 12px; border: 1px solid rgba(81, 173, 210, 0.16); border-radius: 14px; background-color: rgba(255, 255, 255, 0.7); }
+      .questions-content img { display: block; max-width: 100%; height: auto; margin: 0 auto; border-radius: 10px; border: 1px solid rgba(0, 0, 0, 0.08); }
+      .questions-content figcaption { margin-top: 8px; text-align: center; font-size: 12px; color: #777; }
+      .questions-content pre { margin: 16px 0; padding: 16px; overflow-x: auto; border-radius: 12px; background-color: #f5f7f8; border: 1px solid #dde8ea; color: #333; user-select: text; }
+      .questions-toc { position: sticky; top: 96px; padding: 18px; max-height: calc(100vh - 120px); overflow: auto; }
+      .questions-toc-title { margin: 0 0 12px; font-size: 18px; font-weight: 700; color: #1e1e1e; }
+      .questions-toc a { display: block; padding: 8px 10px; border-radius: 8px; color: #333; line-height: 1.45; }
+      .questions-toc a:hover { background-color: rgba(195, 221, 222, 0.55); color: #51add2; }
+      .questions-toc .toc-h3 { padding-left: 22px; font-size: 13px; color: #666; }
+      @media screen and (max-width: 991px) {
+        nav li a { float: none; display: block; margin: 0; padding: 8px 0; font-size: 16px; line-height: 24px; }
+        .navbar-nav { padding: 8px 0 12px; }
+        .questions-page { width: 100%; padding: 24px 12px 48px; overflow-x: hidden; }
+        .questions-layout { display: flex; flex-direction: column; gap: 14px; }
+        .questions-toc { position: static; order: -1; width: 100%; max-height: 220px; padding: 14px; overflow-y: auto; }
+        .questions-toc-title { font-size: 16px; }
+        .questions-toc a { padding: 7px 8px; font-size: 13px; }
+        .questions-toc .toc-h3 { padding-left: 16px; font-size: 12px; }
+        .questions-hero { padding: 20px; margin-bottom: 14px; border-radius: 14px; }
+        .questions-hero h1 { font-size: 24px; line-height: 1.4; }
+        .questions-hero p { font-size: 14px; line-height: 1.8; }
+        .questions-tags { gap: 8px; }
+        .questions-tags span { padding: 6px 10px; font-size: 12px; }
+        .questions-card { width: 100%; padding: 18px; border-radius: 14px; }
+        .questions-content h2 { margin: 30px 0 14px; font-size: 22px; }
+        .questions-content h3 { margin: 22px 0 12px; padding: 12px; font-size: 17px; }
+        .questions-content h4 { font-size: 16px; }
+        .questions-content p, .questions-content a, .questions-content b { font-size: 14px; line-height: 1.85; overflow-wrap: anywhere; word-break: break-word; }
+        .questions-content figure { margin: 14px 0 22px; padding: 8px; border-radius: 12px; }
+        .questions-content img { width: 100%; max-width: 100%; }
+        .questions-content pre { padding: 12px; font-size: 12px; white-space: pre-wrap; word-break: break-word; }
+      }
+      @media screen and (max-width: 480px) {
+        .questions-page { padding: 18px 8px 40px; }
+        .questions-hero, .questions-card, .questions-toc { box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07); }
+        .questions-hero { padding: 16px; }
+        .questions-hero h1 { font-size: 21px; }
+        .questions-card { padding: 14px; }
+        .questions-content h2 { font-size: 20px; }
+        .questions-content h3 { font-size: 16px; }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wallpaper"></div>
+    <div class="top">
+      <div class="container">
+          <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="/"
+              ><div class="logo">Katofrp</div></a
+            >
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarNavDropdown"
+              aria-controls="navbarNavDropdown"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav ml-auto">
+                <li class="navber-item active" data-path="/frp/">
+                  <a href="/">首页</a>
+                </li>
+                <li class="navber-item" data-path="/frp/articles/">
+                  <a target="_blank" href="articles.html">文章教程</a>
+                </li>
+                <li class="navber-item" data-path="/frp/manual/">
+                  <a target="_blank" href="/question.html">常见问题解答</a>
+                </li>
+                 <li class="navber-item" data-path="/frp/articles/">
+                  <a target="_blank" href="video.html">视频教程</a>
+                </li>
+                <li class="navber-item" data-path="/frp/manual/">
+                  <a target="_blank" href="https://cloud.tanggaoyun.cn/aff/YNYAOMNZ">MC面板云服</a>
+                </li>
+                
+                <li class="navber-item" data-path="/frp/history/">
+                  <a target="_blank" href="https://qm.qq.com/q/AGIm3K3ziK">官群</a>
+                </li>
+                 <li class="navber-item" data-path="/frp/history/">
+                  <a target="_blank" href="https://pd.qq.com/s/gs2gdbhia">QQ频道</a>
+                </li>
+                <!-- <li class="navber-item">
+                  <a href="https://www.coze.cn/store/agent/7540617672967422004?bot_id=true&bid=6ha49se8g700r" target="_blank">AI联机问题解决（测试）</a>
+                </li> -->
+              </ul>
+            </div>
+          </nav>
+      </div>
+    </div>
+    <div class="middle">
+      <main class="questions-page">
+        <section class="questions-hero">
+          <h1>Katofrp使用帮助，最全Minecraft联机问题解答！</h1>
+          <p>这里整理了 Katofrp 客户端使用、连接失败、Minecraft 联机异常、Mod 冲突与语音聊天等常见问题，方便快速定位解决方法。</p>
+          <div class="questions-tags"><span>Katofrp</span><span>Minecraft 联机</span><span>故障排查</span><span>使用帮助</span></div>
+        </section>
+        <div class="questions-layout">
+          <article class="questions-card questions-content">
+<p>Katofrp使用帮助，最全Minecraft联机问题解答！</p>
+<p>软件官网：<a href="https://frp.katomegumi.net" target="_blank" rel="noopener">https://frp.katomegumi.net</a></p>
+<p>软件下载地址：<a href="https://wwk.lanzoul.com/b023tt2de" target="_blank" rel="noopener">https://wwk.lanzoul.com/b023tt2de</a> 密码 etq9</p>
+<p>任何问题解答群：793663165</p>
+<h2 id="一-软件部分问题">一、软件部分问题</h2>
+<h3 id="🌿1-软件登录问题">🌿1.软件登录问题</h3>
+<p>如果无法登录，可能请先检查你的电脑网络是否有网。关闭加速器。更改电脑DNS为223.5.5.5或者其他非运营商DNS。</p>
+<p>如果还是无法登陆，可以下载一个爱加速软件，然后登陆之后关闭即可。</p>
+<p id="1-3-6版本后增加了用户名密码登录-注意-qq登录后可以绑定已注册的用户名密码登录-但是以前的用户名密码登录不再视为单独账号-与qq登录合并为一个账号-当qq登录无法登录时可以使用用户名密码登录">1.3.6版本后增加了用户名密码登录，注意：qq登录后可以绑定已注册的用户名密码登录，但是以前的用户名密码登录不再视为单独账号，与qq登录合并为一个账号。当qq登录无法登录时可以使用用户名密码登录。</p>
+<h3 id="☘️2-安装失败-打开白屏">☘️2.安装失败、打开白屏</h3>
+<p>可能原因一：</p>
+<p>现象：安装后打不开，白屏，安装提示缺失webview2</p>
+<p>使用webview2修复工具修复，</p>
+<p><a href="https://wwfj.lanzoul.com/b0sxlfdri" target="_blank" rel="noopener">https://wwfj.lanzoul.com/b0sxlfdri</a></p>
+<p>密码:biar</p>
+<figure><img src="media/questions/docx-rId24.png" alt="Katofrp 使用帮助截图" loading="lazy" /><figcaption>操作截图</figcaption></figure>
+<p>点击按钮重装即可。</p>
+<p>可能原因二：</p>
+<p>现象：edge无法打开，软件打开没反应</p>
+<p>请不要禁用edge浏览器，可以使用edge block工具启用。如果edge已损坏请重装或使用webview2修复工具。</p>
+<b id="2-1-考虑使用修复版本-187mb-版本-该版本集成固定webview2版本-在官网首页下载里-包含修复版本">2.1 考虑使用修复版本（187MB）版本，该版本集成固定webview2版本。在官网首页下载里，包含修复版本。</b>
+<br/><b id="2-2-安装时候无法安装webview2可以考虑使用修复edge和webview2问题-教程如下">2.2 安装时候无法安装webview2可以考虑使用修复edge和webview2问题，教程如下:</b>
+<p><a href="https://zhuanlan.zhihu.com/p/588463531" target="_blank" rel="noopener">zhuanlan.zhihu.com</a></p>
+<p>如果不管用，可以重新安装webview2，方法是：首先看这个教程把相关的注册表删除<a href="https://zhuanlan.zhihu.com/p/642003474" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/642003474</a> ，然后再重新下载webview2安装程序安装即可。（这个方法最好用，软件白屏不显示也使用该方法）</p>
+<h3 id="🎋3-提示核心程序被kill">🎋3.提示核心程序被kill</h3>
+<figure><img src="media/questions/docx-rId28.jpg" alt="Katofrp 使用帮助截图" loading="lazy" /><figcaption>操作截图</figcaption></figure>
+<p>第一步：首先检查端口是不是填错了！！</p>
+<p>端口只能是1-65535之间的数字，开头不能以0开头，不能超出位数！！</p>
+<p>第二步：关闭系统防火墙相关</p>
+<figure><img src="media/questions/docx-rId30.png" alt="Katofrp 使用帮助截图" loading="lazy" /><figcaption>操作截图</figcaption></figure>
+<p>最新win11系统需要在这里关闭基于声誉的保护！</p>
+<figure><img src="media/questions/docx-rId31.png" alt="Katofrp 使用帮助截图" loading="lazy" /><figcaption>操作截图</figcaption></figure>
+<p>同样，最后如果已经被拦截，找到被拦截的，点击在设备上允许。</p>
+<figure><img src="media/questions/docx-rId32.png" alt="Katofrp 使用帮助截图" loading="lazy" /><figcaption>操作截图</figcaption></figure>
+<p>同样建议关闭实时保护。</p>
+<p>第三步：重装软件或补充文件</p>
+<p>然后还不行检查程序目录下lib文件夹下有没有frpc.exe，没有的话下载下面的链接：</p>
+<p><a href="https://wwfj.lanzoul.com/iGS452ptlrch" target="_blank" rel="noopener">https://wwfj.lanzoul.com/iGS452ptlrch</a> 密码:8q4m</p>
+<p>放到程序目录/lib/下面</p>
+<figure><img src="media/questions/docx-rId34.png" alt="Katofrp 使用帮助截图" loading="lazy" /><figcaption>操作截图</figcaption></figure>
+<p>如果还是不行，lib文件夹中也有相关文件，请从官网下载最新版安装包，不要使用朋友发来的压缩包。</p>
+<p>以下是以前的文档：</p>
+<p>出现如图所示错误,</p>
+<p>那么检查杀毒软件是否删除了frpc 程序，在隔离区检查一下，然后添加信任即可。</p>
+<p>或者检查安装根目录是否有lib/frpc.exe文件,有的话就不是被删了</p>
+<p>检查windows安全中心（defender）里面是否有被隔离的程序文件，如果有就恢复，然后记得添加信任文件。</p>
+<p>添加信任文件夹教程：<a href="https://zhuanlan.zhihu.com/p/603824058?utm_id=0" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/603824058?utm_id=0</a></p>
+<figure><img src="media/questions/docx-rId36.jpg" alt="Katofrp 使用帮助截图" loading="lazy" /><figcaption>操作截图</figcaption></figure>
+<p>如果还是不行，关闭杀毒软件，然后重新安装软件。实在最后不行联系客服解决。</p>
+<p>检查用户名中是否有空格;如果有也可能导致这个错误，但是在lib/中有程序(该bug已修复)</p>
+<h3 id="😣4-连接成功-状态测试显示离线服务器">😣4.连接成功，状态测试显示离线服务器</h3>
+<p>检查自己端口是不是写正确了，游戏是否正常！</p>
+<p>换一个端口试试。</p>
+<p>也可能测试服务器当前异常了，请注意官方公告。</p>
+<h3 id="😇5-如何关闭防火墙">😇5.如何关闭防火墙</h3>
+<p><a href="https://blog.csdn.net/undoshutdown/article/details/130505400" target="_blank" rel="noopener">windows11 如何关闭防火墙_win11关闭防火墙和杀毒软件-CSDN博客</a></p>
+<h3 id="🎗️6-免费搭建自己的节点">🎗️6.免费搭建自己的节点</h3>
+<p><a href="https://juejin.cn/post/7475999357444587530" target="_blank" rel="noopener">juejin.cn</a></p>
+<h3 id="🎀7-星露谷联机教程">🎀7.星露谷联机教程</h3>
+<p><a href="https://blog.csdn.net/2301_77977115/article/details/136234132" target="_blank" rel="noopener">blog.csdn.net</a></p>
+<h3 id="🎿8-我的世界速览教程">🎿8.我的世界速览教程</h3>
+<p><a href="https://blog.csdn.net/2301_77977115/article/details/136124539?spm=1001.2014.3001.5502" target="_blank" rel="noopener">blog.csdn.net</a></p>
+<h3 id="🧸9-如何多端口">🧸9.如何多端口？</h3>
+<p>在输入端口的时候使用英文逗号,来把你需要映射的端口隔开。</p>
+<h3 id="🥊10-katofrp高级模式如何使用">🥊10.katofrp高级模式如何使用</h3>
+<p><a href="https://blog.csdn.net/2301_77977115/article/details/150937693?spm=1001.2014.3001.5501" target="_blank" rel="noopener">blog.csdn.net</a></p>
+<p>过去，我们只有一个节点，人一多就“你卡我不卡”。为了让大家都能流畅联机，腐竹（服主）一口气放出了多个节点。现在，每个人都可以挑自己延迟最低的那条线，告别卡顿！</p>
+<p>高级模式仅限 Pro 会员，普通用户无法开启。 连接完成后点「分享」快速分享给好友。</p>
+<h2 id="二-minecraft联机问题">二、Minecraft联机问题</h2>
+<h3 id="🐮6-登录失败-无效会话-请尝试重启">🐮6.登录失败：无效会话（请尝试重启）</h3>
+<figure><img src="media/questions/docx-rId52.jpg" alt="Katofrp 使用帮助截图" loading="lazy" /><figcaption>操作截图</figcaption></figure>
+<p>在需要辅助 Mod 时不使用且不是正版MC，会出现 登录失败: 无效会话 (请尝试重启游戏及启动器) 问题。</p>
+<p>可以通过安装辅助MOD 或 第三方皮肤站登录解决。</p>
+<h4>办法一、安装辅助mod</h4>
+<p>请根据您的游戏版本安装辅助Mod，注意你的游戏版本和游戏是forge还是fabric版本。可以使用下面的模组，在pcl2中搜索安装即可。</p>
+<p><a href="https://www.mcmod.cn/class/2754.html" target="_blank" rel="noopener">[LSP]自定义局域网联机 (Lan Server Properties) - MC百科|最大的Minecraft中文MOD百科</a></p>
+<p><a href="https://www.mcmod.cn/class/4498.html" target="_blank" rel="noopener">[mcwifipnp]更高级联机设置 (LAN World Plug-n-Play) - MC百科|最大的Minecraft中文MOD百科</a></p>
+<p>使用方法：在开启局域网时，关闭在线模式或正版验证，再点击创建即可。</p>
+<figure><img src="media/questions/docx-rId55.jpg" alt="Katofrp 使用帮助截图" loading="lazy" /><figcaption>操作截图</figcaption></figure>
+<p>某些整合包已经有联机 Mod，这可以通过您在游戏内尝试打开 对局域网开放 功能时是否有 在线模式 的配置来判断。</p>
+<h4>办法二、第三方皮肤站登录</h4>
+<p>使用第三方皮肤站就可以同时使用皮肤还可以解决这个问题。注册登录皮肤站之后按照操作导入到启动器里面即可。</p>
+<p>教程可以参考下面的链接。</p>
+<p><a href="https://www.bilibili.com/read/mobile?id=21154236" target="_blank" rel="noopener">www.bilibili.com</a></p>
+<h3 id="😥7-出现聊天消息验证失败-再发就断开连接">😥7.出现聊天消息验证失败，再发就断开连接</h3>
+<figure><img src="media/questions/docx-rId60.jpg" alt="Katofrp 使用帮助截图" loading="lazy" /><figcaption>操作截图</figcaption></figure>
+<p>典型如上图所示</p>
+<p>因为众所周知,非常重视游戏体验的Moiang在1.19.1及以上版本中加入了聊天举报机制,即使是第三方服务器中的聊天也要受到Mojang的监管。</p>
+<p>有一个插件可以搞定这个问题</p>
+<p>[1.19.x][No Chat Reports]使他人无法举报聊天信息/全局禁用服务器聊天举报[SCT] <a href="https://www.mcmod.cn/class/6756.html" target="_blank" rel="noopener">https://www.mcmod.cn/class/6756.html</a> 服务端和客户端都装上去就可以正常发送聊天文字了</p>
+<h3 id="🌺8-invaild-characters-inusername">🌺8. invaild characters inusername</h3>
+<figure><img src="media/questions/docx-rId64.jpg" alt="Katofrp 使用帮助截图" loading="lazy" /><figcaption>操作截图</figcaption></figure>
+<h3 id="🎮9-连接上自动断开-掉虚空-排查指南">🎮9.连接上自动断开、掉虚空 排查指南</h3>
+<figure><img src="media/questions/docx-rId66.jpg" alt="Katofrp 使用帮助截图" loading="lazy" /><figcaption>操作截图</figcaption></figure>
+<figure><img src="media/questions/docx-rId67.png" alt="Katofrp 使用帮助截图" loading="lazy" /><figcaption>操作截图</figcaption></figure>
+<p>1.可能是免费节点人太多了，使用赞助节点。</p>
+<p>2.让你的朋友切换下java版本试试，建议使用推荐java版本</p>
+<p>3.你朋友的电脑内存分配问题，分配给游戏的内存不要拉满也不要过低，可以选择自动，大型整合包一定要留足内存。</p>
+<p>4.以上检查均没有问题，请检查你的mod列表内是否有冲突模组，这个问题最不好排查，建议在官群询问意见。建议使用原版测试一下，如果没有问题那就是有mod冲突了。</p>
+<p>4.房主和成员把渲染距离拉低，模拟区块数拉低一点再进入游戏。</p>
+<p>如果还是这样考虑房主网络太差，建议换个人当房主试试。</p>
+<p>6.其他任然无法解决的问题可以加官群询问。</p>
+<p>如果错误提示是unknown未知主机，可能是你的朋友连接地址输错了，建议crtl+v粘贴，记得调成英文输入法！！！！。</p>
+<h3 id="💔10-连接中止-连接超时-被迫断开">💔10.连接中止、连接超时、被迫断开</h3>
+<p>房主和成员把渲染距离拉低，模拟区块数拉低一点再进入游戏。</p>
+<p>如果还是这样考虑房主网络太差，建议换个人当房主试试。</p>
+<h3 id="🍓11-进入后加载不出地图-随后自动退出-且显示connection-rest">🍓11. 进入后加载不出地图，随后自动退出，且显示connection rest</h3>
+<p>由于不同运营商之间结算以及各家政策不同，跨运营商有丢包风险，特别是晚高峰丢包情况，导致进入不了地图，表现为其他人能进，可能某些人不行，然后不间断随机断开，排除掉其他游戏问题，那么就是可能丢包问题。目前大多数服务器节点都是电信骨干网络，如果你是移动或联通运营商，建议切换到电信（热点）网络下联机，防止晚高峰期丢包风险而导致游戏联机断开。（移动家特别容易丢包，特别是房主建议尽量使用电信网络）</p>
+<h3 id="🍜12-自然之旅1-1版本连接不上-提示getcont-0">🍜12.自然之旅1.1版本连接不上，提示getCont:0</h3>
+<p>将蝴蝶模组更新为最新版本或者使用自然之旅1.2</p>
+<h3 id="🍊13-提示simplelogin相关的错误">🍊13.提示simplelogin相关的错误</h3>
+<figure><img src="media/questions/docx-rId72.jpg" alt="Katofrp 使用帮助截图" loading="lazy" /><figcaption>操作截图</figcaption></figure>
+<p>如果提示如图错误，请把simplelogin模组删除。</p>
+<p>影响整合包：群峦</p>
+<h3 id="🍜14-天境模组导致出现进入即退出">🍜14.天境模组导致出现进入即退出</h3>
+<p>联机报上面的错误</p>
+<figure><img src="media/questions/docx-rId74.jpg" alt="Katofrp 使用帮助截图" loading="lazy" /><figcaption>操作截图</figcaption></figure>
+<p>查询日志有类似内容</p>
+<figure><img src="media/questions/docx-rId75.jpg" alt="Katofrp 使用帮助截图" loading="lazy" /><figcaption>操作截图</figcaption></figure>
+<pre><code>
+[0911月2024 15:15:25.638] [Render thread/ERROR] [Apotheosis : Adventure/]: Insufficient number of affixes to satisfy the loot rules (ignoring backup rules) of rarity mythic for category helmetRequired: 3; Provided: 2
+
+[0911月2024 15:15:25.638] [Render thread/ERROR] [Apotheosis : Adventure/]: Insufficient number of affixes to satisfy the loot rules (ignoring backup rules) of rarity mythic for category bootsRequired: 3; Provided: 2
+
+</code></pre>
+<p>遇到此相关信息，是Aether mod （天境模组）出现故障。用 Aether 1.4.2 替换 Aether 1.5.0 解决了这个问题。（在更高版本尚未测试）</p>
+<p>影响整合包：自制整合包</p>
+<figure><img src="media/questions/docx-rId76.jpg" alt="Katofrp 使用帮助截图" loading="lazy" /><figcaption>操作截图</figcaption></figure>
+<h3 id="15-简单语音聊天的设置教程">15.简单语音聊天的设置教程</h3>
+<p>需要联机工具1.4.3以上支持。</p>
+<figure><img src="media/questions/docx-rId78.png" alt="Katofrp 使用帮助截图" loading="lazy" /><figcaption>操作截图</figcaption></figure>
+<p>我们在设置里第一个通道类型tcp</p>
+<p>第二个通道udp，然后第一个我的世界端口填开放出来的例如25565，第二个是简单语音的端口。像图里一样填，注意要是英文逗号</p>
+<figure><img src="media/questions/docx-rId79.png" alt="Katofrp 使用帮助截图" loading="lazy" /><figcaption>操作截图</figcaption></figure>
+<p>记录下udp这条的原始地址，注意如果端口号不一样需要自己拼一下原始连接地址。</p>
+<figure><img src="media/questions/docx-rId80.png" alt="Katofrp 使用帮助截图" loading="lazy" /><figcaption>操作截图</figcaption></figure>
+<p>所有人voice_host=后面填上原始地址，如voice_host=43.248.119.135:12345</p>
+<p>包括房主都要这么配置，然后启动游戏即可。</p>
+<h2 id="三-视频联机教程">三、视频联机教程</h2>
+<h3 id="🎈我的世界minecraft">🎈我的世界Minecraft</h3>
+<p><a href="https://www.bilibili.com/video/BV1Bv421y7MU/?buvid=XUE5467E943A836195409C826574DCCD3A6D2&amp;from_spmid=main.space.0.0&amp;is_story_h5=false&amp;mid=eNbwUeJ3NYrLEGEEc5xK1Q%3D%3D&amp;p=1&amp;plat_id=114&amp;share_from=ugc&amp;share_medium=android&amp;share_plat=android&amp;share_session_id=b014a5ba-75aa-458d-b07d-a4eb3269be46&amp;share_source=COPY&amp;share_tag=s_i&amp;spmid=united.player-video-detail.0.0&amp;timestamp=1723791757&amp;unique_k=cSG6eCT&amp;up_id=30865275&amp;share_times=1" target="_blank" rel="noopener">www.bilibili.com</a></p>
+          </article>
+          <aside class="questions-toc">
+            <div class="questions-toc-title">目录</div>
+<a class="toc-h2" href="#一-软件部分问题">一、软件部分问题</a>
+<a class="toc-h3" href="#🌿1-软件登录问题">🌿1.软件登录问题</a>
+<a class="toc-h3" href="#☘️2-安装失败-打开白屏">☘️2.安装失败、打开白屏</a>
+<a class="toc-h3" href="#🎋3-提示核心程序被kill">🎋3.提示核心程序被kill</a>
+<a class="toc-h3" href="#😣4-连接成功-状态测试显示离线服务器">😣4.连接成功，状态测试显示离线服务器</a>
+<a class="toc-h3" href="#😇5-如何关闭防火墙">😇5.如何关闭防火墙</a>
+<a class="toc-h3" href="#🎗️6-免费搭建自己的节点">🎗️6.免费搭建自己的节点</a>
+<a class="toc-h3" href="#🎀7-星露谷联机教程">🎀7.星露谷联机教程</a>
+<a class="toc-h3" href="#🎿8-我的世界速览教程">🎿8.我的世界速览教程</a>
+<a class="toc-h3" href="#🧸9-如何多端口">🧸9.如何多端口？</a>
+<a class="toc-h3" href="#🥊10-katofrp高级模式如何使用">🥊10.katofrp高级模式如何使用</a>
+<a class="toc-h2" href="#二-minecraft联机问题">二、Minecraft联机问题</a>
+<a class="toc-h3" href="#🐮6-登录失败-无效会话-请尝试重启">🐮6.登录失败：无效会话（请尝试重启）</a>
+<a class="toc-h3" href="#😥7-出现聊天消息验证失败-再发就断开连接">😥7.出现聊天消息验证失败，再发就断开连接</a>
+<a class="toc-h3" href="#🌺8-invaild-characters-inusername">🌺8. invaild characters inusername</a>
+<a class="toc-h3" href="#🎮9-连接上自动断开-掉虚空-排查指南">🎮9.连接上自动断开、掉虚空 排查指南</a>
+<a class="toc-h3" href="#💔10-连接中止-连接超时-被迫断开">💔10.连接中止、连接超时、被迫断开</a>
+<a class="toc-h3" href="#🍓11-进入后加载不出地图-随后自动退出-且显示connection-rest">🍓11. 进入后加载不出地图，随后自动退出，且显示connection rest</a>
+<a class="toc-h3" href="#🍜12-自然之旅1-1版本连接不上-提示getcont-0">🍜12.自然之旅1.1版本连接不上，提示getCont:0</a>
+<a class="toc-h3" href="#🍊13-提示simplelogin相关的错误">🍊13.提示simplelogin相关的错误</a>
+<a class="toc-h3" href="#🍜14-天境模组导致出现进入即退出">🍜14.天境模组导致出现进入即退出</a>
+<a class="toc-h3" href="#15-简单语音聊天的设置教程">15.简单语音聊天的设置教程</a>
+<a class="toc-h2" href="#三-视频联机教程">三、视频联机教程</a>
+<a class="toc-h3" href="#🎈我的世界minecraft">🎈我的世界Minecraft</a>
+          </aside>
+        </div>
+      </main>
+    </div>
+      <footer>
+      <div class="copyright" style="text-align: center;">
+      <!--  <img src="https://counter.katomegumi.net/get/@katofrp" style="text-align: center;margin-top: 15px;" alt="katolan" id="footer-logo"/> -->
+        <p>
+          记住我们的官方网站：<a href="https://www.frp.moe" target="_blank">frp.moe</a> <br/>
+            任何使用问题可以加入<a href="https://qm.qq.com/q/jhzFDyBPz4" target="_blank">官方QQ群</a>：599075373 <br />
+          Copyright&nbsp;©&nbsp;2024&nbsp;<a
+            href="https://www.katomegumi.net/"
+            target="_blank"
+            >Katomegumi</a
+          >,&nbsp;All&nbsp;rights&nbsp;reserved.<br />
+            <a href="https://afdian.com/a/seeyouagain" target="_blank">赞助支持我们</a> |
+            <a href="changelog.html" target="_blank">版本更新日志</a> |
+          <a href="https://s.threatbook.com/report/file/07afe4373e3fda3ee1dd103e693a9e48eb18f257d96c738b3371d3a39ebb2d2f" target="_blank">微步软件安全报告</a> |
+            <a href="https://www.coze.cn/store/agent/7540617672967422004?bot_id=true&bid=6ha49se8g700r" target="_blank">让AI来解决联机问题（测试）</a>
+          | <a href="https://pd.qq.com/s/gs2gdbhia" target="_blank"> 联机QQ频道</a>
+            <!-- <a href="https://www.frp.moe/privacy.html" target="_blank">隐私政策</a> -->
+        </p>
+      </div>
+    </footer>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+  </body>
+</html>
