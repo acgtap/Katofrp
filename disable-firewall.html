@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>如何关闭Win10/Win11智能应用控制和防火墙 - KatoFrp</title>
+    <meta
+      name="keywords"
+      content="关闭防火墙,关闭智能应用控制,win10防火墙,win11防火墙,windows defender,智能应用控制,katofrp安装,软件被拦截"
+    />
+    <meta
+      name="description"
+      content="安装KatoFrp被拦截？本文详细介绍如何关闭Windows 10/11的智能应用控制和防火墙，解决软件安装被阻止的问题。"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="shortcut icon" type="image/x-icon" href="media/lo.png" />
+    <link rel="apple-touch-icon" type="image/x-icon" href="media/lo.png" />
+    <link
+      href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/index.css" />
+    <style>
+      .article-content {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 40px 20px;
+      }
+      .article-content h1 {
+        font-size: 32px;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 10px;
+      }
+      .article-content .subtitle {
+        text-align: center;
+        color: #666;
+        margin-bottom: 40px;
+        font-size: 14px;
+      }
+      .article-content h2 {
+        font-size: 24px;
+        font-weight: 700;
+        margin-top: 50px;
+        margin-bottom: 20px;
+        padding-left: 12px;
+        border-left: 4px solid #51add2;
+      }
+      .article-content h3 {
+        font-size: 18px;
+        font-weight: 600;
+        margin-top: 30px;
+        margin-bottom: 15px;
+      }
+      .article-content p {
+        font-size: 16px;
+        line-height: 1.8;
+        margin-bottom: 16px;
+        color: #333;
+      }
+      .article-content ul {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 20px;
+      }
+      .article-content ul li {
+        font-size: 16px;
+        line-height: 1.8;
+        padding: 8px 0 8px 28px;
+        position: relative;
+      }
+      .article-content ul li::before {
+        content: "✅";
+        position: absolute;
+        left: 0;
+      }
+      .tip-box {
+        background: linear-gradient(135deg, #e8f4f8 0%, #d4ecf7 100%);
+        border-radius: 12px;
+        padding: 24px 28px;
+        margin: 30px 0;
+        border-left: 4px solid #51add2;
+      }
+      .tip-box h4 {
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 12px;
+        color: #2a7a9b;
+      }
+      .tip-box p {
+        font-size: 15px;
+        margin-bottom: 8px;
+        color: #444;
+      }
+      .warning-box {
+        background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%);
+        border-radius: 12px;
+        padding: 24px 28px;
+        margin: 30px 0;
+        border-left: 4px solid #ffa000;
+      }
+      .warning-box h4 {
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 12px;
+        color: #e65100;
+      }
+      .warning-box p {
+        font-size: 15px;
+        color: #444;
+        margin-bottom: 8px;
+      }
+      .danger-box {
+        background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
+        border-radius: 12px;
+        padding: 24px 28px;
+        margin: 30px 0;
+        border-left: 4px solid #e53935;
+      }
+      .danger-box h4 {
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 12px;
+        color: #b71c1c;
+      }
+      .danger-box p {
+        font-size: 15px;
+        color: #444;
+        margin-bottom: 8px;
+      }
+      .step-card {
+        background: rgba(255,255,255,0.85);
+        border-radius: 10px;
+        padding: 20px 24px;
+        margin-bottom: 16px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+      }
+      .step-card .step-num {
+        flex-shrink: 0;
+        width: 36px;
+        height: 36px;
+        background: #51add2;
+        color: #fff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 16px;
+      }
+      .step-card .step-text {
+        flex: 1;
+      }
+      .step-card .step-text h4 {
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 6px;
+      }
+      .step-card .step-text p {
+        font-size: 14px;
+        margin: 0;
+        color: #555;
+        line-height: 1.7;
+      }
+      .step-card .step-text code {
+        background: #f0f4f8;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-size: 13px;
+        color: #2a7a9b;
+        font-family: Consolas, monospace;
+      }
+      .path-hint {
+        background: #f5f5f5;
+        border-radius: 8px;
+        padding: 12px 16px;
+        margin: 12px 0;
+        font-size: 14px;
+        color: #555;
+        border-left: 3px solid #51add2;
+      }
+      .path-hint span {
+        color: #51add2;
+        font-weight: 600;
+      }
+      .article-img {
+        width: 100%;
+        max-width: 800px;
+        display: block;
+        margin: 24px auto;
+        border-radius: 12px;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+        border: 1px solid #e0e0e0;
+      }
+      .article-img-caption {
+        text-align: center;
+        color: #888;
+        font-size: 13px;
+        margin-top: -16px;
+        margin-bottom: 24px;
+      }
+      .cta-box {
+        background: linear-gradient(135deg, #51add2 0%, #3d8fb0 100%);
+        border-radius: 12px;
+        padding: 30px;
+        margin: 40px 0;
+        text-align: center;
+        color: #fff;
+      }
+      .cta-box h3 {
+        color: #fff;
+        font-size: 22px;
+        font-weight: 700;
+        margin-bottom: 15px;
+      }
+      .cta-box p {
+        color: rgba(255,255,255,0.9);
+        font-size: 16px;
+        margin-bottom: 20px;
+      }
+      .cta-box a {
+        display: inline-block;
+        padding: 12px 30px;
+        background: #fff;
+        color: #51add2 !important;
+        border-radius: 6px;
+        font-weight: 600;
+        font-size: 16px;
+        transition: all 0.3s;
+        margin: 5px;
+      }
+      .cta-box a:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      }
+      .os-badge {
+        display: inline-block;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 13px;
+        font-weight: 600;
+        margin-right: 8px;
+        margin-bottom: 8px;
+      }
+      .badge-win10 { background: #0078d4; color: #fff; }
+      .badge-win11 { background: #0067c0; color: #fff; }
+      .section-divider {
+        border: none;
+        border-top: 2px dashed #c3ddde;
+        margin: 40px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wallpaper"></div>
+    <div class="top">
+      <div class="top">
+        <div class="container">
+          <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="/"
+              ><div class="logo">Katofrp</div></a
+            >
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarNavDropdown"
+              aria-controls="navbarNavDropdown"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav ml-auto">
+                <li class="navber-item" data-path="/frp/">
+                  <a href="/">首页</a>
+                </li>
+                <li class="navber-item" data-path="/frp/articles/">
+                  <a href="articles.html">文章教程</a>
+                </li>
+                <li class="navber-item" data-path="/frp/manual/">
+                  <a href="/question.html">常见问题解答</a>
+                </li>
+                <li class="navber-item" data-path="/frp/manual/">
+                  <a href="https://cloud.tanggaoyun.cn/aff/YNYAOMNZ">MC面板云服</a>
+                </li>
+                <li class="navber-item" data-path="/frp/history/">
+                  <a href="https://qm.qq.com/q/AGIm3K3ziK">官群</a>
+                </li>
+                <li class="navber-item">
+                  <a href="https://afdian.com/a/seeyouagain" target="_blank">爱发电</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+    <div class="middle">
+      <div class="article-content" style="margin-top: 30px;">
+        <h1>如何关闭 Win10 / Win11 智能应用控制和防火墙</h1>
+        <p class="subtitle">解决软件安装被拦截的问题，安装完成后记得重新开启保护</p>
+
+        <div class="warning-box">
+          <h4>⚠️ 操作前请注意</h4>
+          <p>关闭防火墙和智能应用控制会降低系统安全性。请确保你只从 <strong>官方渠道</strong>（frp.moe）下载 KatoFrp，安装完成后务必重新开启这些保护功能。</p>
+          <p>本教程适用于：<span class="os-badge badge-win10">Windows 10</span><span class="os-badge badge-win11">Windows 11</span></p>
+        </div>
+
+        <!-- 第一部分：智能应用控制 -->
+        <h2>🛡️ 第一步：关闭智能应用控制（Win11 专属）</h2>
+        <p>智能应用控制（Smart App Control）是 Windows 11 22H2 及以上版本新增的安全功能，它会自动阻止未经微软认证的应用程序运行。如果你在安装 KatoFrp 时看到"此应用已被阻止"的提示，需要先关闭此功能。</p>
+
+        <div class="tip-box">
+          <h4>📌 如何判断是否需要关闭？</h4>
+          <p>如果你使用的是 Windows 10，可以跳过此步骤，直接看第二步关闭防火墙。</p>
+          <p>如果你使用的是 Windows 11 且安装时弹出"智能应用控制已阻止此应用"，则需要执行此步骤。</p>
+        </div>
+
+        <img src="media/generated-2026-05-13T09-00-54-542Z-1.png" alt="Windows 11 智能应用控制设置界面" class="article-img" />
+        <p class="article-img-caption">Windows 安全中心 → 基于信誉的保护 → 智能应用控制，将其关闭</p>
+
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <div class="step-text">
+            <h4>打开 Windows 安全中心</h4>
+            <p>点击任务栏右下角的盾牌图标，或者按 <code>Win + S</code> 搜索"Windows 安全中心"并打开。</p>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <div class="step-text">
+            <h4>进入"应用和浏览器控制"</h4>
+            <p>在 Windows 安全中心左侧菜单中，点击"应用和浏览器控制"（App &amp; browser control）。</p>
+            <div class="path-hint">路径：<span>Windows 安全中心</span> → <span>应用和浏览器控制</span></div>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <div class="step-text">
+            <h4>找到"智能应用控制"设置</h4>
+            <p>在页面中找到"智能应用控制"（Smart App Control）部分，点击"智能应用控制设置"链接。</p>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">4</div>
+          <div class="step-text">
+            <h4>将智能应用控制设置为"关闭"</h4>
+            <p>在智能应用控制页面，选择"<strong>关闭</strong>"选项。系统可能会弹出确认对话框，点击确认即可。</p>
+            <p style="margin-top: 8px; color: #e65100;">⚠️ 注意：关闭后需要重启电脑才能完全生效。</p>
+          </div>
+        </div>
+
+        <div class="danger-box">
+          <h4>🔴 重要提示</h4>
+          <p>智能应用控制一旦关闭，<strong>无法直接重新开启</strong>，只能通过重置电脑或重装系统来恢复。因此，请确认你确实需要安装的软件是安全可信的，再执行此操作。</p>
+          <p>KatoFrp 官方下载地址：<strong>frp.moe</strong>，请勿从其他来源下载。</p>
+        </div>
+
+        <hr class="section-divider" />
+
+        <!-- 第二部分：关闭防火墙 -->
+        <h2>🔥 第二步：关闭 Windows Defender 防火墙</h2>
+        <p>Windows 防火墙有时会阻止 KatoFrp 的网络连接，导致无法正常联机。以下步骤适用于 Windows 10 和 Windows 11。</p>
+
+        <img src="media/generated-2026-05-13T09-01-01-941Z-1.png" alt="Windows Defender 防火墙关闭设置" class="article-img" />
+        <p class="article-img-caption">控制面板 → Windows Defender 防火墙 → 启用或关闭防火墙，将专用和公用网络均设为关闭</p>
+
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <div class="step-text">
+            <h4>打开控制面板</h4>
+            <p>按 <code>Win + R</code> 打开运行窗口，输入 <code>control</code> 并按回车，打开控制面板。</p>
+            <p style="margin-top: 6px;">或者按 <code>Win + S</code> 搜索"控制面板"并打开。</p>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <div class="step-text">
+            <h4>进入 Windows Defender 防火墙</h4>
+            <p>在控制面板中，点击"系统和安全"，然后点击"Windows Defender 防火墙"。</p>
+            <div class="path-hint">路径：<span>控制面板</span> → <span>系统和安全</span> → <span>Windows Defender 防火墙</span></div>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <div class="step-text">
+            <h4>点击"启用或关闭 Windows Defender 防火墙"</h4>
+            <p>在左侧菜单中，点击"<strong>启用或关闭 Windows Defender 防火墙</strong>"链接。</p>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">4</div>
+          <div class="step-text">
+            <h4>关闭专用网络和公用网络的防火墙</h4>
+            <p>在设置页面中，你会看到两个部分：</p>
+            <p>• <strong>专用网络设置</strong>：选择"关闭 Windows Defender 防火墙（不推荐）"</p>
+            <p>• <strong>公用网络设置</strong>：选择"关闭 Windows Defender 防火墙（不推荐）"</p>
+            <p style="margin-top: 8px;">两个都选好后，点击"<strong>确定</strong>"按钮保存设置。</p>
+          </div>
+        </div>
+
+        <div class="tip-box">
+          <h4>💡 更推荐的方式：添加防火墙例外</h4>
+          <p>如果你不想完全关闭防火墙，可以只为 KatoFrp 添加例外规则：</p>
+          <p>在 Windows Defender 防火墙页面 → 点击左侧"<strong>允许应用或功能通过 Windows Defender 防火墙</strong>" → 点击"更改设置" → 点击"允许其他应用" → 浏览找到 KatoFrp.exe → 添加即可。</p>
+        </div>
+
+        <hr class="section-divider" />
+
+        <hr class="section-divider" />
+
+        <!-- 第三部分：关闭病毒和威胁防护 -->
+        <h2>🦠 第三步：关闭病毒和威胁防护实时保护</h2>
+        <p>Windows Defender 的实时保护功能有时会误判 KatoFrp 为威胁并将其删除或阻止运行。如果安装后程序被自动删除，或运行时弹出"已阻止威胁"提示，需要临时关闭实时保护。</p>
+
+        <img src="media/generated-2026-05-13T09-12-23-735Z-1.png" alt="Windows 病毒和威胁防护 关闭实时保护" class="article-img" id="virus-img" />
+        <p class="article-img-caption">Windows 安全中心 → 病毒和威胁防护 → 管理设置 → 关闭实时保护</p>
+
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <div class="step-text">
+            <h4>打开 Windows 安全中心</h4>
+            <p>点击任务栏右下角的盾牌图标，或按 <code>Win + S</code> 搜索"Windows 安全中心"并打开。</p>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <div class="step-text">
+            <h4>进入"病毒和威胁防护"</h4>
+            <p>在 Windows 安全中心左侧菜单中，点击"病毒和威胁防护"（Virus &amp; threat protection）。</p>
+            <div class="path-hint">路径：<span>Windows 安全中心</span> → <span>病毒和威胁防护</span></div>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <div class="step-text">
+            <h4>点击"管理设置"</h4>
+            <p>在"病毒和威胁防护设置"区域下，点击"<strong>管理设置</strong>"链接。</p>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">4</div>
+          <div class="step-text">
+            <h4>关闭"实时保护"</h4>
+            <p>找到"<strong>实时保护</strong>"（Real-time protection）开关，点击将其切换为"<strong>关闭</strong>"状态。系统会弹出 UAC 权限确认，点击"是"即可。</p>
+            <p style="margin-top: 8px; color: #e65100;">⚠️ 注意：关闭后请尽快完成安装，不要长时间保持关闭状态。</p>
+          </div>
+        </div>
+
+        <div class="tip-box">
+          <h4>💡 更推荐的方式：添加排除项</h4>
+          <p>比完全关闭实时保护更安全的做法是为 KatoFrp 添加"排除项"：</p>
+          <p>在"病毒和威胁防护设置"页面 → 滚动到"排除项"区域 → 点击"添加或删除排除项" → 点击"添加排除项" → 选择"文件夹" → 选择 KatoFrp 的安装目录（默认为 <code>C:\Program Files\KatoFrp</code>）。</p>
+          <p>这样 Windows Defender 就不会扫描该目录，而其他文件仍受保护。</p>
+        </div>
+
+        <div class="warning-box">
+          <h4>⚠️ 安装完成后请立即重新开启实时保护</h4>
+          <p>实时保护是防止恶意软件入侵的重要防线。安装完 KatoFrp 后，请立即回到"病毒和威胁防护设置"页面，将实时保护重新开启。</p>
+        </div>
+
+        <hr class="section-divider" />
+
+        <!-- 第四部分：重新安装软件 -->
+        <h2>📦 第四步：重新安装 KatoFrp</h2>
+        <p>完成以上三步后，重新下载并安装 KatoFrp 客户端。</p>
+
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <div class="step-text">
+            <h4>前往官网下载最新版本</h4>
+            <p>访问 <code>frp.moe</code> 官网，下载最新版本的 KatoFrp 客户端安装包。</p>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <div class="step-text">
+            <h4>右键以管理员身份运行安装包</h4>
+            <p>下载完成后，右键点击安装文件，选择"<strong>以管理员身份运行</strong>"，按照提示完成安装。</p>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <div class="step-text">
+            <h4>安装完成后重新开启防火墙</h4>
+            <p>安装成功后，按照第二步的路径，将防火墙重新开启，并为 KatoFrp 添加防火墙例外规则，保持系统安全。</p>
+          </div>
+        </div>
+
+        <div class="warning-box">
+          <h4>⚠️ 安装完成后请务必重新开启防火墙</h4>
+          <p>防火墙是保护你电脑安全的重要屏障。安装完 KatoFrp 后，请立即按照上述步骤重新开启 Windows Defender 防火墙，并为 KatoFrp 添加例外规则，而不是长期保持关闭状态。</p>
+        </div>
+
+        <hr class="section-divider" />
+
+        <!-- 第四部分：常见问题 -->
+        <h2>❓ 常见问题</h2>
+
+        <h3>关闭防火墙后还是无法安装？</h3>
+        <p>可能是杀毒软件（如360、火绒、腾讯管家等）也在拦截。请临时关闭第三方杀毒软件后再尝试安装。安装完成后重新开启杀毒软件，并将 KatoFrp 添加到信任列表。</p>
+
+        <h3>安装成功但运行时被拦截？</h3>
+        <p>在杀毒软件中将 KatoFrp 的安装目录添加到"信任区"或"白名单"，然后重新运行程序。</p>
+
+        <h3>Win10 没有智能应用控制选项？</h3>
+        <p>智能应用控制是 Windows 11 22H2 及以上版本的专属功能，Windows 10 没有此功能，跳过第一步直接关闭防火墙即可。</p>
+
+        <!-- 联系官方 -->
+        <div class="cta-box">
+          <h3>还有问题？加入官方群</h3>
+          <p>群号：599075373<br/>遇到安装问题、使用疑问都可以在群里咨询</p>
+          <a href="https://qm.qq.com/q/AGIm3K3ziK" target="_blank">点击加入官方群</a>
+          <a href="/" target="_blank">返回首页下载</a>
+        </div>
+
+      </div>
+    </div>
+
+    <footer>
+      <div class="copyright" style="text-align: center;">
+        <p>
+          记住我们的官方网站：<a href="https://www.frp.moe" target="_blank">frp.moe</a> <br/>
+          任何使用问题可以加入<a href="https://qm.qq.com/q/AGIm3K3ziK" target="_blank">官方QQ群</a>：599075373 <br />
+          Copyright&nbsp;©&nbsp;2024&nbsp;<a
+            href="https://www.katomegumi.net/"
+            target="_blank"
+            >Katomegumi</a
+          >,&nbsp;All&nbsp;rights&nbsp;reserved.<br />
+          <a href="https://afdian.com/a/seeyouagain" target="_blank">赞助我们</a>|
+          <a href="https://www.katomegumi.net" target="_blank">惠惠的实验室</a>|
+        </p>
+      </div>
+    </footer>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  </body>
+</html>
